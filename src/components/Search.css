@@ -1,0 +1,9 @@
+.search {
+  background-color: rosybrown;
+  max-height: 100vh;
+  overflow: auto;
+}
+
+/* .search > div:nth-child(2) {
+  outline: 2px solid ghostwhite;
+} */

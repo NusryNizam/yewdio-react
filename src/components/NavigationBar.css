@@ -1,0 +1,22 @@
+nav {
+    background-color: rgb(32, 125, 94);
+    /* height: 64px; */
+}   
+
+.tab-list {
+    background-color: #171717;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-block: 0.5em;
+    height: 64px;
+}
+
+.tab-list button {
+    padding: 0.25em;
+    background-color: whitesmoke;
+    border: 1px solid rgb(0 0 0 / 0.1);
+    margin-right: 0.125em;
+    cursor: pointer;
+    border-radius: 4px;
+}

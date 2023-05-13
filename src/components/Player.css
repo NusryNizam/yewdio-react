@@ -1,0 +1,7 @@
+.player {
+    background-color: yellowgreen;
+    /* height: 100px; */
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: 64px;
+}
