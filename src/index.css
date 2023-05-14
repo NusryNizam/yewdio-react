@@ -6,13 +6,47 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: hsl(0, 0%, 14%);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --tablist-border: rgba(255, 255, 255, 0.2);
+  --icon: rgb(244, 244, 244);
+  --minimised-player-bg: hsl(0, 0%, 12%);
+  --shadow: hsla(0, 0%, 0%, 0.15);
+  --input-bg: hsl(0, 0%, 18%);
+  --list-item-border: hsla(0, 0%, 100%, 0.1);
+}
+
+svg {
+  fill: none;
+  stroke: var(--icon);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+
+    --tablist-border: rgba(0, 0, 0, 0.2);
+    --icon: rgb(17, 17, 17);
+    --minimised-player-bg: hsl(0, 0%, 100%);
+    --shadow: hsla(0, 0%, 0%, 0.15);
+    --input-bg: hsl(0, 0%, 92%);
+  --list-item-border: hsla(0, 0%, 0%, 0.1);
+
+  }
+
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
 }
 
 * {
@@ -42,16 +76,10 @@ h1 {
   line-height: 1.1;
 }
 
+h2 {
+  margin-bottom: 0.25em;
+}
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.hidden {
+  display: none;
 }

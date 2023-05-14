@@ -4,15 +4,15 @@ import axios from "axios";
 import ISong from "../interfaces/song.interface";
 import "./Search.css";
 import "./tabs.css";
+import ListItem from "./ListItem/ListItem";
 
 interface SearchProps {
-  playSong(id:string): void
+  playSong: (id:string) => void;
 }
 
 const Search: FunctionComponent<SearchProps> = (props) => {
   let [results, setResults] = useState<ISong[]>([]);
   let [searchTerm, setSearchTerm] = useState("");
-
 
   function searchItem(e: React.KeyboardEvent<HTMLInputElement>) {
     // console.log(e.key, (e.target as HTMLInputElement).value);
@@ -38,25 +38,31 @@ const Search: FunctionComponent<SearchProps> = (props) => {
 
   return (
     <section className="search">
+      <h2>Search</h2>
       <div className="search-controls">
         <input
           type="text"
           name="search"
-          id="search"
+          id="search-box"
           placeholder="Search"
           onKeyDown={(e) => searchItem(e)}
         />
-        <input type="submit" value="Search" />
+        {/* <input type="submit" value="Search" /> */}
       </div>
       <div className="search-results">
-        <ul>
+        <ul className='search-list'>
           {results.map((song) => {
             if (song.type === "video") {
               return (
-                <li key={song.videoId + Math.random()}>
-                  {song.title} -{" "}
-                  <button onClick={() => props.playSong(song.videoId)}>Play</button>
-                </li>
+                // <li key={song.videoId + Math.random()}>
+                //   {song.title} -{" "}
+                //   <button onClick={() => props.playSong(song.videoId)}>Play</button>
+                // </li>
+                <ListItem key={song.videoId + Math.random()}
+                  videoId={song.videoId}
+                  title={song.title}
+                  playSong={props.playSong}
+                />
               );
             }
           })}

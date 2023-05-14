@@ -1,5 +1,4 @@
 .search {
-  background-color: rosybrown;
   max-height: 100vh;
   overflow: auto;
 }
@@ -7,3 +6,30 @@
 /* .search > div:nth-child(2) {
   outline: 2px solid ghostwhite;
 } */
+
+#search-box {
+  padding: 1em;
+  border: none;
+  border-radius: 0;
+  width: 100%;
+  background-color: var(--input-bg);
+  margin-bottom: 1.125rem;
+  /* border: ; */
+}
+
+.search-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.search-list > * {
+  padding: 0.5em;
+  border: 1px solid var(--list-item-border);
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+
+.search-list > *:hover {
+  background-color: var(--list-item-hover);
+}
