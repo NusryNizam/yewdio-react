@@ -51,8 +51,8 @@ function App() {
   return (
     <>
       <div className="container">
-        <Player setIsPlaying={changeState} isPlaying={isPlaying} data={nowPlaying}/>
         <NavigationBar playSong={playSong} />
+        <Player setIsPlaying={changeState} isPlaying={isPlaying} data={nowPlaying}/>
       </div>
     </>
   );

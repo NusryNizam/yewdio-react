@@ -16,10 +16,13 @@
 
   --tablist-border: rgba(255, 255, 255, 0.2);
   --icon: rgb(244, 244, 244);
-  --minimised-player-bg: hsl(0, 0%, 12%);
+  --minimised-player-bg: hsl(0, 0%, 18%);
   --shadow: hsla(0, 0%, 0%, 0.15);
   --input-bg: hsl(0, 0%, 18%);
   --list-item-border: hsla(0, 0%, 100%, 0.1);
+  --nav-tabs-height: 64px; 
+  --secondary-text-color: hsl(0, 0%, 80%);
+
 }
 
 svg {
@@ -38,6 +41,7 @@ svg {
     --shadow: hsla(0, 0%, 0%, 0.15);
     --input-bg: hsl(0, 0%, 92%);
   --list-item-border: hsla(0, 0%, 0%, 0.1);
+  --secondary-text-color: hsl(0, 0%, 16%);
 
   }
 

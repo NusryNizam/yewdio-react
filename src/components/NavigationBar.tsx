@@ -35,6 +35,7 @@ const NavigationBar: FC<NavProp> = (props) => {
         <TabContent value="settings">
           <Settings />
         </TabContent>
+
         <div className="tab-list">
           <TabList>
             <TabTrigger value="dashboard">
