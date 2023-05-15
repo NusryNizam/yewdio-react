@@ -2,7 +2,6 @@ import { FC } from "react";
 import {
   TabContent,
   TabIndicator,
-  // TabIndicator,
   TabList,
   Tabs,
   TabTrigger,

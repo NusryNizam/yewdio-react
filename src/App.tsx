@@ -15,6 +15,7 @@ function App() {
     authorId: "",
     title: "",
     duration: "",
+    author: ""
   });
 
   function changeState() {
@@ -26,16 +27,13 @@ function App() {
     axios
       .get(`https://yt.funami.tech/api/v1/videos/${id}`)
       .then((res) => {
-        console.log(res.data);
         setNowPlaying(res.data);
-        // console.log(res.data.adaptiveFormats[2].url);
       })
       .catch();
   }
 
   useEffect(() => {
     if (isPlaying) {
-      console.log(isPlaying);
       audioRef.current.play();
     } else {
       audioRef.current.pause();

@@ -19,7 +19,8 @@ const Player: React.FC<PlayerProps> = (props) => {
         </div>
       </button>
       <div className="details">
-        <p>{props.data.title ? props.data.title : "Song Title"}</p>
+        <h4>{props.data.title ? props.data.title : "Audio Title"}</h4>
+        <p>{props.data.author ? props.data.author : "Author"}</p>
       </div>
     </div>
   );

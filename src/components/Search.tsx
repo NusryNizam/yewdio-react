@@ -15,7 +15,6 @@ const Search: FunctionComponent<SearchProps> = (props) => {
   let [searchTerm, setSearchTerm] = useState("");
 
   function searchItem(e: React.KeyboardEvent<HTMLInputElement>) {
-    // console.log(e.key, (e.target as HTMLInputElement).value);
     let target = e.target as HTMLInputElement;
 
     if (e.key === "Enter") {
@@ -28,7 +27,6 @@ const Search: FunctionComponent<SearchProps> = (props) => {
     axios
       .get(`https://yt.funami.tech/api/v1/search?q=${searchTerm}`)
       .then((res) => {
-        console.log(res.data);
         setResults(res.data);
       })
       .catch((err) => {
@@ -47,17 +45,12 @@ const Search: FunctionComponent<SearchProps> = (props) => {
           placeholder="Search"
           onKeyDown={(e) => searchItem(e)}
         />
-        {/* <input type="submit" value="Search" /> */}
       </div>
       <div className="search-results">
         <ul className='search-list'>
           {results.map((song) => {
             if (song.type === "video") {
               return (
-                // <li key={song.videoId + Math.random()}>
-                //   {song.title} -{" "}
-                //   <button onClick={() => props.playSong(song.videoId)}>Play</button>
-                // </li>
                 <ListItem key={song.videoId + Math.random()}
                   videoId={song.videoId}
                   title={song.title}
