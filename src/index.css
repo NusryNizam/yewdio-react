@@ -20,9 +20,12 @@
   --shadow: hsla(0, 0%, 0%, 0.15);
   --input-bg: hsl(0, 0%, 18%);
   --list-item-border: hsla(0, 0%, 100%, 0.1);
+  --list-item-hover: hsl(0, 0%, 20%);
   --nav-tabs-height: 64px; 
   --secondary-text-color: hsl(0, 0%, 80%);
 
+  --transparent-black: rgb(0 0 0 / 60%);
+  --white: #fff;
 }
 
 svg {
@@ -41,6 +44,7 @@ svg {
     --shadow: hsla(0, 0%, 0%, 0.15);
     --input-bg: hsl(0, 0%, 92%);
   --list-item-border: hsla(0, 0%, 0%, 0.1);
+  --list-item-hover: hsl(0, 0%, 96%);
   --secondary-text-color: hsl(0, 0%, 16%);
 
   }

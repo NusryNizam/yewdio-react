@@ -22,14 +22,3 @@
   margin: 0;
   padding: 0;
 }
-
-.search-list > * {
-  padding: 0.5em;
-  border: 1px solid var(--list-item-border);
-  cursor: pointer;
-  margin-bottom: 0.5rem;
-}
-
-.search-list > *:hover {
-  background-color: var(--list-item-hover);
-}

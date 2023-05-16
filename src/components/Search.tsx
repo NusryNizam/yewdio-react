@@ -27,7 +27,9 @@ const Search: FunctionComponent<SearchProps> = (props) => {
     axios
       .get(`https://yt.funami.tech/api/v1/search?q=${searchTerm}`)
       .then((res) => {
-        setResults(res.data);
+        setResults(res.data as ISong[]);
+        console.log(res.data);
+        
       })
       .catch((err) => {
         console.log("Error: ", err);
@@ -54,6 +56,9 @@ const Search: FunctionComponent<SearchProps> = (props) => {
                 <ListItem key={song.videoId + Math.random()}
                   videoId={song.videoId}
                   title={song.title}
+                  author={song.author}
+                  duration={song.lengthSeconds}
+                  thumbnail={song.thumbnails}
                   playSong={props.playSong}
                 />
               );

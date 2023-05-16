@@ -4,11 +4,16 @@ export default interface ISong {
     authorId: string,
     author: string,
     title: string,
-    duration: string,
-    adaptiveFormats?: IFormats[]
+    lengthSeconds: number,
+    adaptiveFormats?: IFormats[],
+    thumbnails: IThumbs[]
 }
 
 interface IFormats {
     url: string,
     type: string
+}
+
+export interface IThumbs {
+    url: string
 }

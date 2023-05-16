@@ -11,7 +11,7 @@ type PlayerProps = {
 
 const Player: React.FC<PlayerProps> = (props) => {
   const [overflow, setOverflow] = useState(false);
-  const [titleWrapperWidth, setTitleWrapperWidth] = useState(0);
+  // const [titleWrapperWidth, setTitleWrapperWidth] = useState(0);
   const [hidden, setHidden] = useState(false)
 
   const titleWrapperRef = useRef<HTMLDivElement | null>(null);
@@ -64,7 +64,6 @@ const Player: React.FC<PlayerProps> = (props) => {
             ref={titleRef}
             className={overflow ? "details__title marquee" : "details__title"}
             data-name={props.data.title ? `${props.data.title} · ` : "Song Title"}
-            data-width={titleWrapperWidth}
           >
             {props.data.title ? `${props.data.title} · ` : "Song Title"}
           </h4>
@@ -74,7 +73,6 @@ const Player: React.FC<PlayerProps> = (props) => {
             // style={{ display: overflow ? "none" : "inherit" }}
             className={overflow ? "details__title marquee" : "details__title"}
             data-name={props.data.title ? `${props.data.title} · ` : "Song Title"}
-            data-width={titleWrapperWidth}
           >
             {props.data.title ? `${props.data.title} · ` : "Song Title"}
           </h4>
