@@ -1,7 +1,8 @@
-import "./Player.css";
+import { useEffect, useRef, useState } from "react";
 
 import ISong from "../interfaces/song.interface";
-import { useEffect, useRef, useState } from "react";
+
+import "./Player.css";
 
 type PlayerProps = {
   setIsPlaying(): void;
@@ -11,35 +12,21 @@ type PlayerProps = {
 
 const Player: React.FC<PlayerProps> = (props) => {
   const [overflow, setOverflow] = useState(false);
-  // const [titleWrapperWidth, setTitleWrapperWidth] = useState(0);
-  const [hidden, setHidden] = useState(false)
+  const [hidden, setHidden] = useState(false);
 
   const titleWrapperRef = useRef<HTMLDivElement | null>(null);
   const titleRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    console.log("inside useeffect (titleWrapperref)");
-    // if (titleWrapperRef.current) {
-    //   titleWrapperRef.current.offsetWidth + 1 < titleWrapperRef.current.scrollWidth
-    //     ? setOverflow(true)
-    //     : setOverflow(false);
-    //   setTitleWrapperWidth(titleWrapperRef.current?.offsetWidth);
-    // }
+    console.info("21:22: Player.tsx");
 
     if (titleWrapperRef.current && titleRef.current) {
-      console.log(titleWrapperRef.current.offsetWidth);
-      console.log(titleRef.current.offsetWidth);
-      
-      if(titleWrapperRef.current.offsetWidth < titleRef.current.offsetWidth) {
-        console.log('title longer than wrapper');
-        
-        setOverflow(true)
-        setHidden(false)
+      if (titleWrapperRef.current.offsetWidth < titleRef.current.offsetWidth) {
+        setOverflow(true);
+        setHidden(false);
       } else {
-        console.log('title NOTTT longer than wrapper');
-
         setOverflow(false);
-        setHidden(true)
+        setHidden(true);
       }
     }
   }, [titleWrapperRef, titleRef, props.isPlaying]);
@@ -60,21 +47,24 @@ const Player: React.FC<PlayerProps> = (props) => {
       </button>
       <div className="details" ref={titleWrapperRef}>
         <div className="details__title-wrapper">
+          <div className="fade"></div>
           <h4
             ref={titleRef}
             className={overflow ? "details__title marquee" : "details__title"}
-            data-name={props.data.title ? `${props.data.title} · ` : "Song Title"}
+            data-name={
+              props.data.title ? `${props.data.title}   ` : "Song Title"
+            }
           >
-            {props.data.title ? `${props.data.title} · ` : "Song Title"}
+            {props.data.title ? `${props.data.title}   ` : "Song Title"}
           </h4>
           <h4
-            style={{display: hidden ? 'none' : 'inherit'}}
-
-            // style={{ display: overflow ? "none" : "inherit" }}
+            style={{ display: hidden ? "none" : "inherit" }}
             className={overflow ? "details__title marquee" : "details__title"}
-            data-name={props.data.title ? `${props.data.title} · ` : "Song Title"}
+            data-name={
+              props.data.title ? `${props.data.title}   ` : "Song Title"
+            }
           >
-            {props.data.title ? `${props.data.title} · ` : "Song Title"}
+            {props.data.title ? `${props.data.title}   ` : "Song Title"}
           </h4>
         </div>
         <p className="details__author">
@@ -82,7 +72,7 @@ const Player: React.FC<PlayerProps> = (props) => {
         </p>
       </div>
 
-      {/* Sprite */}
+      {/* SVG Sprite */}
       <svg width="0" height="0" className="hidden">
         <symbol
           xmlns="http://www.w3.org/2000/svg"

@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import "./App.css";
+import axios from "axios";
+
 import NavigationBar from "./components/NavigationBar";
 import Player from "./components/Player";
 import ISong from "./interfaces/song.interface";
-import axios from "axios";
+
+import "./App.css";
 
 function App() {
   let audioRef = useRef(new Audio());
@@ -13,9 +15,10 @@ function App() {
     type: "",
     videoId: "",
     authorId: "",
+    author: "",
     title: "",
-    duration: "",
-    author: ""
+    lengthSeconds: 0,
+    videoThumbnails: [],
   });
 
   function changeState() {
@@ -23,7 +26,6 @@ function App() {
   }
 
   function playSong(id: string) {
-    console.log(id);
     axios
       .get(`https://yt.funami.tech/api/v1/videos/${id}`)
       .then((res) => {
@@ -33,6 +35,8 @@ function App() {
   }
 
   useEffect(() => {
+    console.info("36:21: App.tsx");
+
     if (isPlaying) {
       audioRef.current.play();
     } else {
@@ -41,6 +45,8 @@ function App() {
   }, [isPlaying]);
 
   useEffect(() => {
+    console.info("47:21: App.tsx");
+
     if (nowPlaying.adaptiveFormats) {
       audioRef.current.src = nowPlaying.adaptiveFormats[2].url;
       audioRef.current.play();
@@ -52,7 +58,11 @@ function App() {
     <>
       <div className="container">
         <NavigationBar playSong={playSong} />
-        <Player setIsPlaying={changeState} isPlaying={isPlaying} data={nowPlaying}/>
+        <Player
+          setIsPlaying={changeState}
+          isPlaying={isPlaying}
+          data={nowPlaying}
+        />
       </div>
     </>
   );

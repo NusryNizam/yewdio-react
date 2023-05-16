@@ -1,6 +1,5 @@
 .player {
   background-color: var(--minimised-player-bg);
-  /* height: 100px; */
   position: absolute;
   inset-inline: 0;
   /*inset-block-end: 0px; */
@@ -8,6 +7,7 @@
   margin: auto;
   padding: 0.5em 1em;
   max-width: 1280px;
+  min-width: 320px;
   width: 100vw;
   display: flex;
   flex-direction: row;
@@ -20,8 +20,6 @@
   border: none;
   border-radius: 50%;
   aspect-ratio: 1;
-  /* padding: 0.1rem; */
-  /* height: 44px; */
   cursor: pointer;
 }
 
@@ -38,6 +36,20 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+.fade {
+  width: 10px;
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    var(--minimised-player-bg)
+  );
+  height: 22px;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  z-index: 99;
+}
 .details__title {
   text-overflow: ellipsis;
   margin-bottom: -0.2rem;
@@ -48,30 +60,18 @@
   color: var(--secondary-text-color);
 }
 
-
 .details__title-wrapper {
-    --width-el: attr(data-width);
-    display: flex;
-    flex-direction: row;
-    white-space: nowrap;
-    width: calc( var(--width-el) * 1px);
+  --width-el: attr(data-width);
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+  width: calc(var(--width-el) * 1px);
 }
-/* 
-.details__title::after {
-  content: attr(data-name);
-  position: absolute;
-  top: 0;
-  --width-value: attr(data-width);
-  width: calc(var(--width-value) * 1px);
-  background-color: green;
-  height: 100%;
-} */
 
 .details__title.marquee {
   --width-val: attr(data-width);
   animation: moveLeft 12s linear infinite;
   animation-delay: 4s;
-  /* overflow: visible; */
 }
 
 @keyframes moveLeft {
@@ -82,6 +82,5 @@
   50%,
   100% {
     translate: -100%;
-
   }
 }

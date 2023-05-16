@@ -2,9 +2,10 @@ import React, { FunctionComponent, useEffect, useState } from "react";
 import axios from "axios";
 
 import ISong from "../interfaces/song.interface";
+import ListItem from "./ListItem/ListItem";
+
 import "./Search.css";
 import "./tabs.css";
-import ListItem from "./ListItem/ListItem";
 
 interface SearchProps {
   playSong: (id:string) => void;
@@ -23,13 +24,11 @@ const Search: FunctionComponent<SearchProps> = (props) => {
   }
 
   useEffect(() => {
-    console.log("use effect..");
+    console.info("26:21: Search.tsx ");
     axios
       .get(`https://yt.funami.tech/api/v1/search?q=${searchTerm}`)
       .then((res) => {
         setResults(res.data as ISong[]);
-        console.log(res.data);
-        
       })
       .catch((err) => {
         console.log("Error: ", err);
@@ -58,7 +57,7 @@ const Search: FunctionComponent<SearchProps> = (props) => {
                   title={song.title}
                   author={song.author}
                   duration={song.lengthSeconds}
-                  thumbnail={song.thumbnails}
+                  thumbnails={song.videoThumbnails}
                   playSong={props.playSong}
                 />
               );

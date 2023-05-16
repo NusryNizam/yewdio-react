@@ -1,5 +1,5 @@
 .list-item {
-    padding: 0.5em;
+  padding: 0.5em;
   border: 1px solid var(--list-item-border);
   cursor: pointer;
   margin-bottom: 0.5rem;
@@ -10,25 +10,53 @@
 }
 
 .list-item:active {
-    border: 1px solid transparent;
+  border: 1px solid transparent;
 }
 
 .title {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    /* width: 100px; */
-    overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .author {
-    color: var(--secondary-text-color);
+  color: var(--secondary-text-color);
+}
+
+.flex-container {
+  display: flex;
+  gap: 0 0.5rem;
+}
+
+.image-container {
+  aspect-ratio: 16/9;
+  width: 100px;
+  height: 56px;
+  min-width: 80px;
+  overflow: hidden;
+  border-radius: 2px;
+  overflow-x: hidden;
+  position: relative;
 }
 
 .duration {
-    background-color: var(--transparent-black);
-    color: var(--white);
-    padding: 0.1rem 0.2rem;
-    border-radius: 3px;
-    font-weight: bold;
-    font-size: 0.8rem;
+  background-color: var(--transparent-black);
+  color: var(--white);
+  padding: 0.1rem 0.2rem;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 0.8rem;
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  backdrop-filter: blur(2px);
+  --webkit-backdrop-filter: blur(2px);
+}
+
+.image-container > img {
+  translate: 0 -10px;
+}
+.details-container {
+  flex: 1;
+  overflow: hidden;
 }

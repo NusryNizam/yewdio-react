@@ -1,36 +1,25 @@
-/* nav {
-    background-color: rgb(32, 125, 94);
-    height: 64px;
-}    */
-
 .tab-list {
-    /* background-color: #171717; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* padding-block: 0.5em; */
-    height: var(--nav-tabs-height);
-    overflow: hidden;
-    max-width: 400px;
-    margin: auto;
-    border-top: 1px solid var(--tablist-border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--nav-tabs-height);
+  overflow: hidden;
+  max-width: 400px;
+  margin: auto;
+  border-top: 1px solid var(--tablist-border);
 }
 
 .tab-list > div {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
 }
 
 .tab-list button {
-    padding: 0.5em;
-    /* background-color: whitesmoke; */
-    /* border: 1px solid rgb(0 0 0 / 0.1); */
-    border: none;
-    /* margin-right: 0.125em; */
-    cursor: pointer;
-    /* border-radius: 4px; */
-    width: 100%;
-    max-height: 64px;
-    aspect-ratio: 1;
+  padding: 0.5em;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  max-height: 64px;
+  aspect-ratio: 1;
 }

@@ -7,13 +7,12 @@ import {
   TabTrigger,
 } from "@ark-ui/react";
 
-import Search from "./Search";
-
-import "./NavigationBar.css";
-
 import Dashboard from "./Dashboard";
+import Search from "./Search";
 import Playlists from "./Playlists";
 import Settings from "./Settings";
+
+import "./NavigationBar.css";
 
 type NavProp = {
   playSong: (id: string) => void;
@@ -71,8 +70,8 @@ const NavigationBar: FC<NavProp> = (props) => {
                 backgroundColor: "#0f6bff",
                 maxWidth: "100px",
                 height: "64px",
-                margin: 'auto',
-                mixBlendMode: 'lighten'
+                margin: "auto",
+                mixBlendMode: "lighten",
               }}
             />
           </TabList>

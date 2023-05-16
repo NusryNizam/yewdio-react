@@ -3,10 +3,6 @@
   overflow: auto;
 }
 
-/* .search > div:nth-child(2) {
-  outline: 2px solid ghostwhite;
-} */
-
 #search-box {
   padding: 1em;
   border: none;
@@ -14,7 +10,9 @@
   width: 100%;
   background-color: var(--input-bg);
   margin-bottom: 1.125rem;
-  /* border: ; */
+  font-family: "Satoshi";
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .search-list {
