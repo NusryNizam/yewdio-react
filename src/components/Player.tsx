@@ -11,6 +11,8 @@ type PlayerProps = {
 };
 
 const Player: React.FC<PlayerProps> = (props) => {
+  const { setIsPlaying, isPlaying, data } = props
+
   const [overflow, setOverflow] = useState(false);
   const [hidden, setHidden] = useState(false);
 
@@ -29,12 +31,12 @@ const Player: React.FC<PlayerProps> = (props) => {
         setHidden(true);
       }
     }
-  }, [titleWrapperRef, titleRef, props.isPlaying]);
+  }, [titleWrapperRef, titleRef, isPlaying]);
   return (
     <div className="player">
-      <button className="player-toggle" onClick={() => props.setIsPlaying()}>
+      <button className="player-toggle" onClick={() => setIsPlaying()} aria-label={isPlaying ? 'Pause' : ''}>
         <div>
-          {props.isPlaying ? (
+          {isPlaying ? (
             <svg className="icon">
               <use xlinkHref="#pause-icon"></use>
             </svg>
@@ -48,27 +50,27 @@ const Player: React.FC<PlayerProps> = (props) => {
       <div className="details" ref={titleWrapperRef}>
         <div className="details__title-wrapper">
           <div className="fade"></div>
-          <h4
+          <div
             ref={titleRef}
             className={overflow ? "details__title marquee" : "details__title"}
             data-name={
-              props.data.title ? `${props.data.title}   ` : "Song Title"
+              data.title ? `${data.title}   ` : "Song Title"
             }
           >
-            {props.data.title ? `${props.data.title}   ` : "Song Title"}
-          </h4>
-          <h4
+            {data.title ? `${data.title}   ` : "Song Title"}
+          </div>
+          <div
             style={{ display: hidden ? "none" : "inherit" }}
             className={overflow ? "details__title marquee" : "details__title"}
             data-name={
-              props.data.title ? `${props.data.title}   ` : "Song Title"
+              data.title ? `${data.title}   ` : "Song Title"
             }
           >
-            {props.data.title ? `${props.data.title}   ` : "Song Title"}
-          </h4>
+            {data.title ? `${data.title}   ` : "Song Title"}
+          </div>
         </div>
         <p className="details__author">
-          {props.data.author ? props.data.author : "Author"}
+          {data.author ? data.author : "Author"}
         </p>
       </div>
 

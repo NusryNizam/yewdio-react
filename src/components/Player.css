@@ -52,8 +52,9 @@
 }
 .details__title {
   text-overflow: ellipsis;
-  margin-bottom: -0.2rem;
+  margin-bottom: -0.1rem;
   position: relative;
+  font-weight: bold;
 }
 
 .details__author {
