@@ -19,6 +19,64 @@
   margin-bottom: 1.25rem;
   font-family: "Satoshi-Medium";
   font-size: 1rem;
+  position: relative;
+}
+
+.input-suffix {
+  position: absolute;
+  right: 1rem;
+  top: 2rem;
+  aspect-ratio: 1;
+  height: 48px;
+  /* background-color: #000; */
+  /* font-family: 'Satoshi-Bold'; */
+
+  border-radius: 50%;
+}
+
+.spinner {
+  border: 2px solid var(--icon);
+  border-right: 2px solid transparent;
+  height: 24px;
+}
+
+.clear-search {
+  /* height: 24px; */
+  content: "test";
+  background: none;
+  border: none;
+  cursor: pointer;
+  top: 1.5rem;
+  right: 0.5rem;
+  height: 36px;
+  display: grid;
+  place-items: center;
+}
+
+.clear-search-icon-wrapper {
+  height: 24px;
+  aspect-ratio: 1;
+}
+
+.clear-search:hover {
+  background-color: var(--list-item-hover);
+}
+
+.clear-search:active {
+  background-color: var(--bg-color);
+}
+
+.spinning {
+  animation: loading 800ms cubic-bezier(0.4, 0.75, 0.56, 0.25) infinite;
+}
+
+@keyframes loading {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
 }
 
 .search-list {

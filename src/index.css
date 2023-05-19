@@ -19,7 +19,7 @@
   --error-bg: hsl(0, 100%, 37%);
   --success-bg: hsl(83, 100%, 30%);
   --info-bg: hsl(43, 100%, 76%);
-  
+
   --bg-color: hsl(0, 0%, 14%);
   --player-border: rgba(255, 255, 255, 0.08);
   --icon: rgb(244, 244, 244);
@@ -125,5 +125,5 @@ img {
 }
 
 span.bold {
-  font-family: 'Satoshi-Bold';
+  font-family: "Satoshi-Bold";
 }

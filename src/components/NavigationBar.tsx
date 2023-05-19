@@ -80,7 +80,7 @@ const NavigationBar: FC<NavProp> = (props) => {
       </Tabs>
 
       {/* SVG Sprite */}
-      <svg width="0" height="0" className="hidden">
+      {/* <svg width="0" height="0" className="hidden">
         <symbol
           xmlns="http://www.w3.org/2000/svg"
           // fill="none"
@@ -140,7 +140,7 @@ const NavigationBar: FC<NavProp> = (props) => {
           <rect width="7" height="9" x="14" y="12" rx="1"></rect>
           <rect width="7" height="5" x="3" y="16" rx="1"></rect>
         </symbol>
-      </svg>
+      </svg> */}
     </nav>
   );
 };

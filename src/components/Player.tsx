@@ -54,7 +54,7 @@ const Player: React.FC<PlayerProps> = (props) => {
         </button>
         <div className="details" ref={titleWrapperRef}>
           <div className="details__title-wrapper">
-            <div className="fade"></div>
+            {/* <div className="fade"></div> */}
             <div
               ref={titleRef}
               className={overflow ? "details__title marquee" : "details__title"}
@@ -76,7 +76,7 @@ const Player: React.FC<PlayerProps> = (props) => {
         </div>
 
         {/* SVG Sprite */}
-        <svg width="0" height="0" className="hidden">
+        {/* <svg width="0" height="0" className="hidden">
           <symbol
             xmlns="http://www.w3.org/2000/svg"
             strokeWidth="2"
@@ -98,7 +98,7 @@ const Player: React.FC<PlayerProps> = (props) => {
             <rect width="4" height="16" x="6" y="4"></rect>
             <rect width="4" height="16" x="14" y="4"></rect>
           </symbol>
-        </svg>
+        </svg> */}
       </div>
     </div>
   );

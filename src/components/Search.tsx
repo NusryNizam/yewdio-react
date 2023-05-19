@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useRef, useState } from "react";
+import React, { FunctionComponent, useRef, useState } from "react";
 import axios from "axios";
 
 import ISong from "../interfaces/song.interface";
@@ -14,13 +14,15 @@ interface SearchProps {
 const Search: FunctionComponent<SearchProps> = (props) => {
   let [results, setResults] = useState<ISong[]>([]);
   let [searchTerm, setSearchTerm] = useState("");
+  let [isSpinning, setIsSpinning] = useState(false);
+
   let searchRef = useRef<HTMLElement | null>(null);
 
   function searchItem(e: React.KeyboardEvent<HTMLInputElement>) {
-    let target = e.target as HTMLInputElement;
+    // let target = e.target as HTMLInputElement;
 
     if (e.key === "Enter") {
-      setSearchTerm(target.value);
+      getResults();
     }
   }
 
@@ -30,22 +32,22 @@ const Search: FunctionComponent<SearchProps> = (props) => {
       : null;
   };
 
-  useEffect(() => {
-    console.info("26:21: Search.tsx ");
-
+  const getResults = () => {
+    setIsSpinning(true);
     axios
       .get(`https://yt.funami.tech/api/v1/search?q=${searchTerm}`)
       .then((res) => {
         setResults(res.data as ISong[]);
         goToTop();
+        setIsSpinning(false);
       })
       .catch((err) => {
         console.log("Error: ", err);
       });
-  }, [searchTerm]);
+  };
 
   return (
-    <section className="search" ref={searchRef}>
+    <section className="search container" ref={searchRef}>
       <h2 className="custom-adjustment">Search</h2>
       <div className="search-controls">
         <input
@@ -54,7 +56,27 @@ const Search: FunctionComponent<SearchProps> = (props) => {
           id="search-box"
           placeholder="Search"
           onKeyDown={(e) => searchItem(e)}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
+        {isSpinning && (
+          <div
+            className={
+              isSpinning ? "input-suffix spinner spinning" : "input-suffix"
+            }
+          ></div>
+        )}
+
+        {!isSpinning && searchTerm && (
+          <button
+            className="input-suffix clear-search"
+            onClick={() => setSearchTerm("")}
+          >
+            <svg className="clear-search-icon-wrapper">
+              <use xlinkHref="#close"></use>
+            </svg>
+          </button>
+        )}
       </div>
       <div className="search-results">
         <ul className="search-list">
@@ -74,15 +96,6 @@ const Search: FunctionComponent<SearchProps> = (props) => {
             }
           })}
           {results.length ? (
-            // <li
-            //   className="list-item"
-            //   role="button"
-            //   aria-label="Scroll to top"
-            //   style={{marginTop: '1rem'}}
-            //   onClick={() => {}}
-            // >
-            //   <div className="details__title">Scroll to top ↑</div>
-            // </li>
             <button className="scroll-to-top" onClick={goToTop}>
               Scroll to top ↑
             </button>

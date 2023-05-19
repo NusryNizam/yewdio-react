@@ -2,7 +2,7 @@ import "./tabs.css";
 
 const Playlists: React.FC = () => {
   return (
-    <section>
+    <section className="container">
       <h2>Playlists</h2>
       <p>Playlists</p>
     </section>
