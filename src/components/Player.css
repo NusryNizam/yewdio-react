@@ -6,6 +6,7 @@
   height: var(--nav-tabs-height);
   border-block: 1px solid var(--player-border);
   padding: 0.3em 1em 0.375em 1em;
+  top: calc(100dvh - (var(--nav-tabs-height) * 2));
 }
 
 .player-content {
