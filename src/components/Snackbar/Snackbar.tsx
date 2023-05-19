@@ -8,7 +8,8 @@ interface SnackbarProps {
 const Snackbar: React.FunctionComponent<SnackbarProps> = (props) => {
   const { type, message } = props;
   return (
-    <div
+    <div className="snackbar-container">
+      <div
       className={
         type === "error"
           ? "snackbar error"
@@ -18,6 +19,7 @@ const Snackbar: React.FunctionComponent<SnackbarProps> = (props) => {
       }
     >
       <p>{message}</p>
+    </div>
     </div>
   );
 };

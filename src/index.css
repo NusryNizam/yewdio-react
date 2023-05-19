@@ -32,6 +32,9 @@
   --secondary-text-color: hsl(0, 0%, 80%);
   --nav-button-color: hsl(0, 0%, 18%);
   --nav-button-hover-color: hsl(0, 0%, 20%);
+  --disabled-stroke: rgb(100, 100, 100);
+  --disabled-bg: gray;
+
 
   --top-layer: 100;
   --middle-layer: 0;
@@ -65,6 +68,8 @@ svg {
     --secondary-text-color: hsl(0, 0%, 16%);
     --nav-button-color: hsl(0, 0%, 100%);
     --nav-button-hover-color: hsl(0, 0%, 94%);
+    --disabled-stroke: rgb(109, 109, 109);
+    --disabled-bg: gray;
   }
 
   a:hover {
@@ -95,6 +100,7 @@ body {
   display: flex;
   min-width: 320px;
   min-height: 100vh;
+  overflow: hidden;
 }
 
 h1,

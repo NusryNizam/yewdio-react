@@ -7,7 +7,7 @@
   border-block: 1px solid var(--player-border);
   padding: 0.3em 1em 0.375em 1em;
   top: calc(100dvh - (var(--nav-tabs-height) * 2));
-  z-index: var(--top-layer);
+  z-index: var(--middle-layer);
 }
 
 .player-content {
@@ -24,6 +24,15 @@
   border-radius: 50%;
   aspect-ratio: 1;
   cursor: pointer;
+}
+
+.player-toggle:disabled {
+  background-color: transparent;
+}
+
+.player-toggle:disabled svg {
+  stroke: var(--disabled-stroke);
+  cursor: auto;
 }
 
 .player-toggle div {

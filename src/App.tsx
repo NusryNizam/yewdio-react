@@ -42,6 +42,8 @@ function App() {
   }
 
   function handleAudioError() {
+    console.log(audioRef.current.error);
+
     setIsPlaying(false);
     setNowPlaying({
       type: "",
@@ -55,11 +57,9 @@ function App() {
 
     setNotification({
       type: "error",
-      message: "Youtube doesn't allow this audio to be played",
+      message: "Error: Youtube doesn't allow this audio to be played.",
     });
     showNotification(5000);
-
-    console.log("Error: Youtube doesn't allow this audio to be played");
   }
 
   function showNotification(duration: number) {
@@ -111,7 +111,7 @@ function App() {
       />
       {/* </div> */}
 
-      <svg width="0" height="0" className="hidden">
+      <svg width="0" height="0" className="hidden" style={{ display: "none" }}>
         <symbol
           xmlns="http://www.w3.org/2000/svg"
           // fill="none"
