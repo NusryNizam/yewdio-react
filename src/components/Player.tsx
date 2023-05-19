@@ -34,7 +34,7 @@ const Player: React.FC<PlayerProps> = (props) => {
   }, [titleWrapperRef, titleRef, isPlaying]);
   return (
     <div className="player">
-      <button className="player-toggle" onClick={() => setIsPlaying()} aria-label={isPlaying ? 'Pause' : ''}>
+      <button className="player-toggle" onClick={() => setIsPlaying()} aria-label={isPlaying ? 'Pause' : 'Play'}>
         <div>
           {isPlaying ? (
             <svg className="icon">
