@@ -10,9 +10,8 @@
   width: 100%;
   background-color: var(--input-bg);
   margin-bottom: 1.125rem;
-  font-family: "Satoshi";
+  font-family: "Satoshi-Medium";
   font-size: 1rem;
-  font-weight: 500;
 }
 
 .search-list {

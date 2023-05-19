@@ -54,7 +54,7 @@
   text-overflow: ellipsis;
   margin-bottom: -0.1rem;
   position: relative;
-  font-weight: bold;
+  font-family: 'Satoshi-Bold';
 }
 
 .details__author {
