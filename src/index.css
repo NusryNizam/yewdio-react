@@ -1,7 +1,7 @@
-@import './satoshi.css';
+@import "./satoshi.css";
 
 :root {
-  font-family: 'Satoshi-Regular', Arial, sans-serif;
+  font-family: "Satoshi-Regular", Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -15,18 +15,30 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  --tablist-border: rgba(255, 255, 255, 0.2);
+  --accent-color: #0f6bff;
+  
+  --bg-color: hsl(0, 0%, 14%);
+  --player-border: rgba(255, 255, 255, 0.08);
   --icon: rgb(244, 244, 244);
   --minimised-player-bg: hsl(0, 0%, 18%);
-  --shadow: hsla(0, 0%, 0%, 0.15);
+  --shadow: hsla(0, 0%, 0%, 0);
   --input-bg: hsl(0, 0%, 18%);
   --list-item-border: hsla(0, 0%, 100%, 0.1);
   --list-item-hover: hsl(0, 0%, 20%);
-  --nav-tabs-height: 64px; 
+  --nav-tabs-height: 64px;
   --secondary-text-color: hsl(0, 0%, 80%);
+  --nav-button-color: hsl(0, 0%, 18%);
+  --nav-button-hover-color: hsl(0, 0%, 20%);
 
+  --top-layer: 100;
+  --middle-layer: 0;
+  --bottom-layer: -100;
   --transparent-black: rgb(0 0 0 / 60%);
   --white: #fff;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 svg {
@@ -39,15 +51,17 @@ svg {
     color: #213547;
     background-color: #ffffff;
 
-    --tablist-border: rgba(0, 0, 0, 0.2);
+    --bg-color: #fff;
+    --player-border: rgba(0, 0, 0, 0.16);
     --icon: rgb(17, 17, 17);
     --minimised-player-bg: hsl(0, 0%, 100%);
     --shadow: hsla(0, 0%, 0%, 0.15);
     --input-bg: hsl(0, 0%, 92%);
-  --list-item-border: hsla(0, 0%, 0%, 0.1);
-  --list-item-hover: hsl(0, 0%, 96%);
-  --secondary-text-color: hsl(0, 0%, 16%);
-
+    --list-item-border: hsla(0, 0%, 0%, 0.1);
+    --list-item-hover: hsl(0, 0%, 96%);
+    --secondary-text-color: hsl(0, 0%, 16%);
+    --nav-button-color: hsl(0, 0%, 100%);
+    --nav-button-hover-color: hsl(0, 0%, 94%);
   }
 
   a:hover {
@@ -80,8 +94,13 @@ body {
   min-height: 100vh;
 }
 
-h1,h2,h3,h4,h5,h6 {
-  font-family: 'Satoshi-Bold';
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Satoshi-Bold";
 }
 h1 {
   font-size: 3.2em;

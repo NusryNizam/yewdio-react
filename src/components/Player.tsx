@@ -11,7 +11,7 @@ type PlayerProps = {
 };
 
 const Player: React.FC<PlayerProps> = (props) => {
-  const { setIsPlaying, isPlaying, data } = props
+  const { setIsPlaying, isPlaying, data } = props;
 
   const [overflow, setOverflow] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -34,70 +34,72 @@ const Player: React.FC<PlayerProps> = (props) => {
   }, [titleWrapperRef, titleRef, isPlaying]);
   return (
     <div className="player">
-      <button className="player-toggle" onClick={() => setIsPlaying()} aria-label={isPlaying ? 'Pause' : 'Play'}>
-        <div>
-          {isPlaying ? (
-            <svg className="icon">
-              <use xlinkHref="#pause-icon"></use>
-            </svg>
-          ) : (
-            <svg className="icon">
-              <use xlinkHref="#play-icon"></use>
-            </svg>
-          )}
-        </div>
-      </button>
-      <div className="details" ref={titleWrapperRef}>
-        <div className="details__title-wrapper">
-          <div className="fade"></div>
-          <div
-            ref={titleRef}
-            className={overflow ? "details__title marquee" : "details__title"}
-            data-name={
-              data.title ? `${data.title}   ` : "Song Title"
-            }
-          >
-            {data.title ? `${data.title}   ` : "Song Title"}
+      <div className="player-content">
+        <button
+          className="player-toggle"
+          onClick={() => setIsPlaying()}
+          aria-label={isPlaying ? "Pause" : "Play"}
+        >
+          <div>
+            {isPlaying ? (
+              <svg className="icon">
+                <use xlinkHref="#pause-icon"></use>
+              </svg>
+            ) : (
+              <svg className="icon">
+                <use xlinkHref="#play-icon"></use>
+              </svg>
+            )}
           </div>
-          <div
-            style={{ display: hidden ? "none" : "inherit" }}
-            className={overflow ? "details__title marquee" : "details__title"}
-            data-name={
-              data.title ? `${data.title}   ` : "Song Title"
-            }
-          >
-            {data.title ? `${data.title}   ` : "Song Title"}
+        </button>
+        <div className="details" ref={titleWrapperRef}>
+          <div className="details__title-wrapper">
+            <div className="fade"></div>
+            <div
+              ref={titleRef}
+              className={overflow ? "details__title marquee" : "details__title"}
+              data-name={data.title ? `${data.title}   ` : "Song Title"}
+            >
+              {data.title ? `${data.title}   ` : "Song Title"}
+            </div>
+            <div
+              style={{ display: hidden ? "none" : "inherit" }}
+              className={overflow ? "details__title marquee" : "details__title"}
+              data-name={data.title ? `${data.title}   ` : "Song Title"}
+            >
+              {data.title ? `${data.title}   ` : "Song Title"}
+            </div>
           </div>
+          <p className="details__author">
+            {data.author ? data.author : "Author"}
+          </p>
         </div>
-        <p className="details__author">
-          {data.author ? data.author : "Author"}
-        </p>
-      </div>
 
-      {/* SVG Sprite */}
-      <svg width="0" height="0" className="hidden">
-        <symbol
-          xmlns="http://www.w3.org/2000/svg"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          viewBox="0 0 24 24"
-          id="play-icon"
-        >
-          <polygon points="5 3 19 12 5 21 5 3"></polygon>
-        </symbol>
-        <symbol
-          xmlns="http://www.w3.org/2000/svg"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          viewBox="0 0 24 24"
-          id="pause-icon"
-        >
-          <rect width="4" height="16" x="6" y="4"></rect>
-          <rect width="4" height="16" x="14" y="4"></rect>
-        </symbol>
-      </svg>
+        {/* SVG Sprite */}
+        <svg width="0" height="0" className="hidden">
+          <symbol
+            xmlns="http://www.w3.org/2000/svg"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            viewBox="0 0 24 24"
+            id="play-icon"
+          >
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </symbol>
+          <symbol
+            xmlns="http://www.w3.org/2000/svg"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            viewBox="0 0 24 24"
+            id="pause-icon"
+          >
+            <rect width="4" height="16" x="6" y="4"></rect>
+            <rect width="4" height="16" x="14" y="4"></rect>
+          </symbol>
+        </svg>
+      </div>
     </div>
   );
 };

@@ -1,3 +1,8 @@
+.tab-list-wrapper {
+  background-color: var(--nav-button-color);
+  height: var(--nav-tabs-height);
+}
+
 .tab-list {
   display: flex;
   justify-content: center;
@@ -6,7 +11,6 @@
   overflow: hidden;
   max-width: 400px;
   margin: auto;
-  border-top: 1px solid var(--tablist-border);
 }
 
 .tab-list > div {
@@ -22,4 +26,9 @@
   width: 100%;
   max-height: 64px;
   aspect-ratio: 1;
+  background-color: var(--nav-button-color);
+}
+
+.tab-list button:hover {
+  background-color: var(--nav-button-hover-color);
 }
