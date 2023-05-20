@@ -57,7 +57,8 @@ function App() {
 
     setNotification({
       type: "error",
-      message: "Error: Youtube doesn't allow this audio to be played. Please try another.",
+      message:
+        "Error: Youtube doesn't allow this audio to be played. Please try another.",
     });
     showNotification(5000);
   }
@@ -208,6 +209,18 @@ function App() {
             d="M6.75 6.75L17.25 17.25"
           ></path>
         </symbol>
+
+        <svg width="0" height="0" className="hidden">
+          <symbol fill="none" viewBox="0 0 24 24" id="chevron-up-icon">
+            <path
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M15.25 14.25L12 10.75L8.75 14.25"
+            ></path>
+          </symbol>
+        </svg>
       </svg>
     </>
   );

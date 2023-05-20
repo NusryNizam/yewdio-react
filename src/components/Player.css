@@ -5,7 +5,8 @@
   margin: auto;
   height: var(--nav-tabs-height);
   border-block: 1px solid var(--player-border);
-  padding: 0.3em 1em 0.375em 1em;
+  padding: 0.3rem 1rem;
+  padding-top: 0.375rem;
   top: calc(100dvh - (var(--nav-tabs-height) * 2));
   z-index: var(--middle-layer);
 }
@@ -19,11 +20,23 @@
   margin: auto;
 }
 
+.player-content button {
+  background-color: var(--button-bg);
+}
+
+.player-content button:hover {
+  filter: brightness(110%);
+}
+
 .player-toggle {
   border: none;
   border-radius: 50%;
   aspect-ratio: 1;
+  width: 48px;
+  height: 48px;
   cursor: pointer;
+  display: grid;
+  place-items: center;
 }
 
 .player-toggle:disabled {

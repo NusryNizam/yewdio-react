@@ -35,6 +35,11 @@ const Player: React.FC<PlayerProps> = (props) => {
   return (
     <div className="player">
       <div className="player-content">
+        <button className="player-toggle">
+            <svg className="icon">
+              <use xlinkHref="#chevron-up-icon"></use>
+            </svg>
+        </button>
         <button
           className="player-toggle"
           onClick={() => setIsPlaying()}

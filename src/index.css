@@ -34,7 +34,7 @@
   --nav-button-hover-color: hsl(0, 0%, 20%);
   --disabled-stroke: rgb(100, 100, 100);
   --disabled-bg: gray;
-
+  --button-bg: hsl(0, 0%, 22%);
 
   --top-layer: 100;
   --middle-layer: 0;
@@ -70,6 +70,7 @@ svg {
     --nav-button-hover-color: hsl(0, 0%, 94%);
     --disabled-stroke: rgb(109, 109, 109);
     --disabled-bg: gray;
+    --button-bg: hsl(0, 0%, 94%);
   }
 
   a:hover {
