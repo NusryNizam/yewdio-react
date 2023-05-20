@@ -96,7 +96,6 @@ function App() {
 
   return (
     <>
-      {/* <div className="container"> */}
       <NavigationBar playSong={playSong} />
       {isVisible && (
         <Snackbar
@@ -109,7 +108,6 @@ function App() {
         isPlaying={isPlaying}
         data={nowPlaying}
       />
-      {/* </div> */}
 
       <svg width="0" height="0" className="hidden" style={{ display: "none" }}>
         <symbol

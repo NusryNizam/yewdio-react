@@ -39,6 +39,7 @@ const Player: React.FC<PlayerProps> = (props) => {
           className="player-toggle"
           onClick={() => setIsPlaying()}
           aria-label={isPlaying ? "Pause" : "Play"}
+          disabled={data.videoId.length > 0 ? false : true}
         >
           <div>
             {isPlaying ? (
