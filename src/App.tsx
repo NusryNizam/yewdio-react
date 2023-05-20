@@ -57,7 +57,7 @@ function App() {
 
     setNotification({
       type: "error",
-      message: "Error: Youtube doesn't allow this audio to be played.",
+      message: "Error: Youtube doesn't allow this audio to be played. Please try another.",
     });
     showNotification(5000);
   }
