@@ -19,8 +19,6 @@ const Search: FunctionComponent<SearchProps> = (props) => {
   let searchRef = useRef<HTMLElement | null>(null);
 
   function searchItem(e: React.KeyboardEvent<HTMLInputElement>) {
-    // let target = e.target as HTMLInputElement;
-
     if (e.key === "Enter") {
       getResults();
     }

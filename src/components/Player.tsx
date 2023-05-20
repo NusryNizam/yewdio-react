@@ -32,6 +32,7 @@ const Player: React.FC<PlayerProps> = (props) => {
       }
     }
   }, [titleWrapperRef, titleRef, isPlaying]);
+  
   return (
     <div className="player">
       <div className="player-content">
@@ -80,31 +81,6 @@ const Player: React.FC<PlayerProps> = (props) => {
             {data.author ? data.author : "Author"}
           </p>
         </div>
-
-        {/* SVG Sprite */}
-        {/* <svg width="0" height="0" className="hidden">
-          <symbol
-            xmlns="http://www.w3.org/2000/svg"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            viewBox="0 0 24 24"
-            id="play-icon"
-          >
-            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-          </symbol>
-          <symbol
-            xmlns="http://www.w3.org/2000/svg"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            viewBox="0 0 24 24"
-            id="pause-icon"
-          >
-            <rect width="4" height="16" x="6" y="4"></rect>
-            <rect width="4" height="16" x="14" y="4"></rect>
-          </symbol>
-        </svg> */}
       </div>
     </div>
   );
