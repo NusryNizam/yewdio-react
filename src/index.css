@@ -134,3 +134,15 @@ img {
 span.bold {
   font-family: "Satoshi-Bold";
 }
+
+.icon-button {
+  border: none;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  background-color: transparent;
+}

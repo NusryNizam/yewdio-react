@@ -7,11 +7,7 @@ import ListItem from "./ListItem/ListItem";
 import "./Search.css";
 import "./tabs.css";
 
-interface SearchProps {
-  playSong: (id: string) => void;
-}
-
-const Search: FunctionComponent<SearchProps> = (props) => {
+const Search: FunctionComponent = () => {
   let [results, setResults] = useState<ISong[]>([]);
   let [searchTerm, setSearchTerm] = useState("");
   let [isSpinning, setIsSpinning] = useState(false);
@@ -88,7 +84,6 @@ const Search: FunctionComponent<SearchProps> = (props) => {
                   author={song.author}
                   duration={song.lengthSeconds}
                   thumbnails={song.videoThumbnails}
-                  playSong={props.playSong}
                 />
               );
             }

@@ -1,113 +1,130 @@
-import { useEffect, useRef, useState } from "react";
-import axios from "axios";
+import { useContext, useEffect } from "react";
 
 import NavigationBar from "./components/NavigationBar";
 import Snackbar from "./components/Snackbar/Snackbar";
 import Player from "./components/Player";
-import ISong from "./interfaces/song.interface";
+// import ISong from "./interfaces/song.interface";
 
 import "./App.css";
+import NowPlayingContext, { ContextProvider } from "./NowPlayingContext";
 
 function App() {
-  let audioRef = useRef<HTMLAudioElement>(new Audio());
+  // let audioRef = useRef<HTMLAudioElement>(new Audio());
 
-  let [isPlaying, setIsPlaying] = useState<boolean>(false);
-  let [nowPlaying, setNowPlaying] = useState<ISong>({
-    type: "",
-    videoId: "",
-    authorId: "",
-    author: "",
-    title: "",
-    lengthSeconds: 0,
-    videoThumbnails: [],
-  });
+  const nowPlayingContext = useContext(NowPlayingContext)
+  
+  const { 
+    isVisible,    setIsVisible,
+    isPlaying,    setIsPlaying,
+    nowPlaying,   setNowPlaying,
+    notification, setNotification,
+  } = nowPlayingContext
 
-  let [notification, setNotification] = useState({
-    type: "error",
-    message: "",
-  });
-  let [isVisible, setIsVisible] = useState(false);
+  // let [isPlaying, setIsPlaying] = useState<boolean>(false);
+  // let [nowPlaying, setNowPlaying] = useState<ISong>({
+  //   type: "",
+  //   videoId: "",
+  //   authorId: "",
+  //   author: "",
+  //   title: "",
+  //   lengthSeconds: 0,
+  //   videoThumbnails: [],
+  // });
 
-  function changeState() {
-    setIsPlaying(!isPlaying);
-  }
+  // let [notification, setNotification] = useState({
+  //   type: "error",
+  //   message: "",
+  // });
+  // let [isVisible, setIsVisible] = useState(false);
 
-  function playSong(id: string) {
-    axios
-      .get(`https://yt.funami.tech/api/v1/videos/${id}`)
-      .then((res) => {
-        setNowPlaying(res.data);
-      })
-      .catch();
-  }
+  // function changeState() {
+  //   setIsPlaying(!isPlaying);
+  // }
 
-  function handleAudioError() {
-    console.log(audioRef.current.error);
+  // function playSong(id: string) {
+  //   axios
+  //     .get(`https://yt.funami.tech/api/v1/videos/${id}`)
+  //     .then((res) => {
+  //       setNowPlaying(res.data);
+  //     })
+  //     .catch();
+  // }
 
-    setIsPlaying(false);
-    setNowPlaying({
-      type: "",
-      videoId: "",
-      authorId: "",
-      author: "",
-      title: "",
-      lengthSeconds: 0,
-      videoThumbnails: [],
-    });
+  // function handleAudioError() {
+  //   console.log(audioRef.current.error);
 
-    setNotification({
-      type: "error",
-      message:
-        "Error: Youtube doesn't allow this audio to be played. Please try another.",
-    });
-    showNotification(5000);
-  }
+  //   setIsPlaying(false);
+  //   setNowPlaying({
+  //     type: "",
+  //     videoId: "",
+  //     authorId: "",
+  //     author: "",
+  //     title: "",
+  //     lengthSeconds: 0,
+  //     videoThumbnails: [],
+  //   });
 
-  function showNotification(duration: number) {
-    setIsVisible(true);
-    setTimeout(() => {
-      setIsVisible(false);
-    }, duration);
-  }
+  //   setNotification({
+  //     type: "error",
+  //     message:
+  //       "Error: Youtube doesn't allow this audio to be played. Please try another.",
+  //   });
+  //   showNotification(5000);
+  // }
+
+  // function showNotification(duration: number) {
+  //   setIsVisible(true);
+  //   setTimeout(() => {
+  //     setIsVisible(false);
+  //   }, duration);
+  // }
+
+  // useEffect(() => {
+  //   console.info("36:21: App.tsx");
+
+  //   if (isPlaying) {
+  //     audioRef.current.play();
+  //   } else {
+  //     audioRef.current.pause();
+  //   }
+  // }, [isPlaying]);
+
+  // useEffect(() => {
+  //   console.info("47:21: App.tsx");
+  //   console.log(nowPlaying);
+    
+
+  //   if (nowPlaying.adaptiveFormats) {
+  //     audioRef.current.src = nowPlaying.adaptiveFormats[2].url;
+  //     audioRef.current.play();
+
+  //     if (audioRef.current) {
+  //       audioRef.current.onerror = handleAudioError;
+  //     }
+
+  //     setIsPlaying(true);
+  //   }
+  // }, [nowPlaying]);
 
   useEffect(() => {
-    console.info("36:21: App.tsx");
-
-    if (isPlaying) {
-      audioRef.current.play();
-    } else {
-      audioRef.current.pause();
-    }
-  }, [isPlaying]);
-
-  useEffect(() => {
-    console.info("47:21: App.tsx");
-
-    if (nowPlaying.adaptiveFormats) {
-      audioRef.current.src = nowPlaying.adaptiveFormats[2].url;
-      audioRef.current.play();
-
-      if (audioRef.current) {
-        audioRef.current.onerror = handleAudioError;
-      }
-
-      setIsPlaying(true);
-    }
-  }, [nowPlaying]);
+    console.log('isVisble changed');
+    
+  }, [isVisible])
 
   return (
     <>
-      <NavigationBar playSong={playSong} />
+    {/* <ContextProvider> */}
+      <NavigationBar />
       {isVisible && (
         <Snackbar
-          type={notification.type as any}
+          type={notification.type}
           message={notification.message}
         />
       )}
       <Player
-        setIsPlaying={changeState}
-        isPlaying={isPlaying}
-        data={nowPlaying}
+        // setIsPlaying={changeState}
+        // isPlaying={isPlaying}
+        // data={nowPlaying}
       />
 
       <svg width="0" height="0" className="hidden" style={{ display: "none" }}>
@@ -170,58 +187,8 @@ function App() {
           <rect width="7" height="9" x="14" y="12" rx="1"></rect>
           <rect width="7" height="5" x="3" y="16" rx="1"></rect>
         </symbol>
-
-        <symbol
-          xmlns="http://www.w3.org/2000/svg"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          viewBox="0 0 24 24"
-          id="play-icon"
-        >
-          <polygon points="5 3 19 12 5 21 5 3"></polygon>
-        </symbol>
-        <symbol
-          xmlns="http://www.w3.org/2000/svg"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          viewBox="0 0 24 24"
-          id="pause-icon"
-        >
-          <rect width="4" height="16" x="6" y="4"></rect>
-          <rect width="4" height="16" x="14" y="4"></rect>
-        </symbol>
-
-        <symbol fill="none" viewBox="0 0 24 24" id="close">
-          <path
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M17.25 6.75L6.75 17.25"
-          ></path>
-          <path
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M6.75 6.75L17.25 17.25"
-          ></path>
-        </symbol>
-
-        <svg width="0" height="0" className="hidden">
-          <symbol fill="none" viewBox="0 0 24 24" id="chevron-up-icon">
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M15.25 14.25L12 10.75L8.75 14.25"
-            ></path>
-          </symbol>
-        </svg>
       </svg>
+      {/* </ContextProvider> */}
     </>
   );
 }

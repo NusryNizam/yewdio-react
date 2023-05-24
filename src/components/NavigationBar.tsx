@@ -14,11 +14,7 @@ import Settings from "./Settings";
 
 import "./NavigationBar.css";
 
-type NavProp = {
-  playSong: (id: string) => void;
-};
-
-const NavigationBar: FC<NavProp> = (props) => {
+const NavigationBar: FC = () => {
   return (
     <nav>
       <Tabs defaultValue="dashboard">
@@ -26,7 +22,7 @@ const NavigationBar: FC<NavProp> = (props) => {
           <Dashboard />
         </TabContent>
         <TabContent value="search">
-          <Search playSong={props.playSong} />
+          <Search />
         </TabContent>
         <TabContent value="playlists">
           <Playlists />
