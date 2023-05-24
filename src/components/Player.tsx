@@ -135,7 +135,6 @@ const Player: React.FC = () => {
         </div>
         <div className="details" ref={titleWrapperRef}>
           <div className="details__title-wrapper">
-            {/* <div className="fade"></div> */}
             <div
               ref={titleRef}
               className={overflow ? "details__title marquee" : "details__title"}

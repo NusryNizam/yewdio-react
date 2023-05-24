@@ -9,6 +9,18 @@
   padding-top: 0.375rem;
   top: calc(100dvh - (var(--nav-tabs-height) * 2));
   z-index: var(--middle-layer);
+  animation: slideUp 60ms ease-in-out;
+}
+
+@keyframes slideUp {
+  0% {
+    translate: 0px 180px;
+    opacity: 0;
+  }
+
+  100% {
+    translate: 0;
+  }
 }
 
 .maximized {
@@ -20,8 +32,8 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  /* justify-content: flex-start; */
-  /* position:static; */
+
+  animation: slideUp 60ms ease-in-out;
 }
 
 .maximized * {
@@ -77,6 +89,7 @@
 .details {
   overflow: hidden;
   position: relative;
+  width: 100%;
 }
 
 .maximized .details {
