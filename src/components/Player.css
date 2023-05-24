@@ -89,7 +89,6 @@
 .details {
   overflow: hidden;
   position: relative;
-  width: 100%;
 }
 
 .maximized .details {
