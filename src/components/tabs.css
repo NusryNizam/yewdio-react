@@ -4,6 +4,8 @@ section {
   padding: 1em;
   padding-bottom: calc(var(--nav-tabs-height) + 8px);
   overflow: hidden auto;
+
+  animation: slideUp 180ms ease-in-out;
 }
 
 .icon {

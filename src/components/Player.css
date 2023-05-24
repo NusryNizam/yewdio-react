@@ -14,7 +14,7 @@
 
 @keyframes slideUp {
   0% {
-    translate: 0px 180px;
+    translate: 0px 20px;
     opacity: 0;
   }
 
