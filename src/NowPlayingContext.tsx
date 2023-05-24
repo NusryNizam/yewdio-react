@@ -1,4 +1,5 @@
 import { ReactNode, createContext, useEffect, useRef, useState } from "react";
+
 import ISong from "./interfaces/song.interface";
 import INotification from "./interfaces/notification.interface";
 import IState from "./interfaces/state.interface";
@@ -96,7 +97,7 @@ export function ContextProvider({
       setIsVisible(false);
     }, duration);
   }
-  
+
   useEffect(() => {
     console.log("nowPlaying changed");
   }, [nowPlaying]);
@@ -114,7 +115,7 @@ export function ContextProvider({
       audioRef.current.play();
 
       if (audioRef.current) {
-      audioRef.current.onerror = handleAudioError;
+        audioRef.current.onerror = handleAudioError;
       }
 
       setIsPlaying(true);

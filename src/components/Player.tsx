@@ -1,25 +1,14 @@
 import { useContext, useEffect, useRef } from "react";
-
-import "./Player.css";
 import { Link } from "react-router-dom";
 import { Pressable } from "@ark-ui/react";
+
 import NowPlayingContext from "../NowPlayingContext";
 
-// type PlayerProps = {
-//   setIsPlaying(): void;
-//   isPlaying: boolean;
-//   data: ISong;
-// };
+import "./Player.css";
 
 const Player: React.FC = () => {
-  // const { setIsPlaying, isPlaying, data } = props;
-
-  // const [overflow, setOverflow] = useState(false);
-  // const [hidden, setHidden] = useState(false);
-  // const [isMinimized, setIsMinimized] = useState(true);
 
   const { 
-    // isVisible,    setIsVisible,
     overflow,     setOverflow,
     hidden,       setHidden,
     isMinimized,  setIsMinimized,

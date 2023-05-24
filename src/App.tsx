@@ -1,137 +1,28 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 
+import NowPlayingContext from "./NowPlayingContext";
 import NavigationBar from "./components/NavigationBar";
 import Snackbar from "./components/Snackbar/Snackbar";
 import Player from "./components/Player";
-// import ISong from "./interfaces/song.interface";
 
 import "./App.css";
-import NowPlayingContext, { ContextProvider } from "./NowPlayingContext";
 
 function App() {
-  // let audioRef = useRef<HTMLAudioElement>(new Audio());
+  const nowPlayingContext = useContext(NowPlayingContext);
 
-  const nowPlayingContext = useContext(NowPlayingContext)
-  
-  const { 
-    isVisible,    setIsVisible,
-    isPlaying,    setIsPlaying,
-    nowPlaying,   setNowPlaying,
-    notification, setNotification,
-  } = nowPlayingContext
-
-  // let [isPlaying, setIsPlaying] = useState<boolean>(false);
-  // let [nowPlaying, setNowPlaying] = useState<ISong>({
-  //   type: "",
-  //   videoId: "",
-  //   authorId: "",
-  //   author: "",
-  //   title: "",
-  //   lengthSeconds: 0,
-  //   videoThumbnails: [],
-  // });
-
-  // let [notification, setNotification] = useState({
-  //   type: "error",
-  //   message: "",
-  // });
-  // let [isVisible, setIsVisible] = useState(false);
-
-  // function changeState() {
-  //   setIsPlaying(!isPlaying);
-  // }
-
-  // function playSong(id: string) {
-  //   axios
-  //     .get(`https://yt.funami.tech/api/v1/videos/${id}`)
-  //     .then((res) => {
-  //       setNowPlaying(res.data);
-  //     })
-  //     .catch();
-  // }
-
-  // function handleAudioError() {
-  //   console.log(audioRef.current.error);
-
-  //   setIsPlaying(false);
-  //   setNowPlaying({
-  //     type: "",
-  //     videoId: "",
-  //     authorId: "",
-  //     author: "",
-  //     title: "",
-  //     lengthSeconds: 0,
-  //     videoThumbnails: [],
-  //   });
-
-  //   setNotification({
-  //     type: "error",
-  //     message:
-  //       "Error: Youtube doesn't allow this audio to be played. Please try another.",
-  //   });
-  //   showNotification(5000);
-  // }
-
-  // function showNotification(duration: number) {
-  //   setIsVisible(true);
-  //   setTimeout(() => {
-  //     setIsVisible(false);
-  //   }, duration);
-  // }
-
-  // useEffect(() => {
-  //   console.info("36:21: App.tsx");
-
-  //   if (isPlaying) {
-  //     audioRef.current.play();
-  //   } else {
-  //     audioRef.current.pause();
-  //   }
-  // }, [isPlaying]);
-
-  // useEffect(() => {
-  //   console.info("47:21: App.tsx");
-  //   console.log(nowPlaying);
-    
-
-  //   if (nowPlaying.adaptiveFormats) {
-  //     audioRef.current.src = nowPlaying.adaptiveFormats[2].url;
-  //     audioRef.current.play();
-
-  //     if (audioRef.current) {
-  //       audioRef.current.onerror = handleAudioError;
-  //     }
-
-  //     setIsPlaying(true);
-  //   }
-  // }, [nowPlaying]);
-
-  useEffect(() => {
-    console.log('isVisble changed');
-    
-  }, [isVisible])
+  const { isVisible, notification } = nowPlayingContext;
 
   return (
     <>
-    {/* <ContextProvider> */}
       <NavigationBar />
       {isVisible && (
-        <Snackbar
-          type={notification.type}
-          message={notification.message}
-        />
+        <Snackbar type={notification.type} message={notification.message} />
       )}
-      <Player
-        // setIsPlaying={changeState}
-        // isPlaying={isPlaying}
-        // data={nowPlaying}
-      />
+      <Player />
 
       <svg width="0" height="0" className="hidden" style={{ display: "none" }}>
         <symbol
           xmlns="http://www.w3.org/2000/svg"
-          // fill="none"
-          // stroke="currentColor"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -145,8 +36,6 @@ function App() {
         </symbol>
         <symbol
           xmlns="http://www.w3.org/2000/svg"
-          // fill="none"
-          // stroke="currentColor"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -158,8 +47,6 @@ function App() {
         </symbol>
         <symbol
           xmlns="http://www.w3.org/2000/svg"
-          // fill="none"
-          // stroke="currentColor"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -174,8 +61,6 @@ function App() {
         </symbol>
         <symbol
           xmlns="http://www.w3.org/2000/svg"
-          // fill="none"
-          // stroke="currentColor"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -188,7 +73,6 @@ function App() {
           <rect width="7" height="5" x="3" y="16" rx="1"></rect>
         </symbol>
       </svg>
-      {/* </ContextProvider> */}
     </>
   );
 }
