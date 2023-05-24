@@ -7,14 +7,18 @@ import NowPlayingContext from "../NowPlayingContext";
 import "./Player.css";
 
 const Player: React.FC = () => {
-
-  const { 
-    overflow,     setOverflow,
-    hidden,       setHidden,
-    isMinimized,  setIsMinimized,
-    isPlaying,    setIsPlaying,
-    nowPlaying 
-  } = useContext(NowPlayingContext)
+  const {
+    overflow,
+    setOverflow,
+    hidden,
+    setHidden,
+    isMinimized,
+    setIsMinimized,
+    isPlaying,
+    setIsPlaying,
+    nowPlaying,
+    audioSrc,
+  } = useContext(NowPlayingContext);
 
   const titleWrapperRef = useRef<HTMLDivElement | null>(null);
   const titleRef = useRef<HTMLDivElement | null>(null);
@@ -31,7 +35,7 @@ const Player: React.FC = () => {
         setHidden(true);
       }
     }
-  }, [titleWrapperRef, titleRef, isPlaying]); 
+  }, [titleWrapperRef, titleRef, isPlaying]);
 
   useEffect(() => {
     if (window.location.pathname === "/") {
@@ -47,10 +51,13 @@ const Player: React.FC = () => {
     <div className={isMinimized ? "player" : "player maximized"}>
       <div style={isMinimized ? { display: "none" } : {}}>
         <div className="album-art">
-          <img
-            src={isPlaying ? nowPlaying.videoThumbnails[3].url : ""}
-            alt="Album art"
-          />
+          {nowPlaying.videoId.length > 0 ? (
+            <img src={nowPlaying.videoThumbnails[3].url} alt="Album art" />
+          ) : (
+            <svg>
+              <use xlinkHref="#music"></use>
+            </svg>
+          )}
         </div>
         <div className="details">
           <progress value={50} max={100}></progress>
@@ -60,7 +67,10 @@ const Player: React.FC = () => {
             <Pressable className="">Previous</Pressable>
             <Pressable
               className="player-toggle"
-              onPress={() => setIsPlaying(prevState => !prevState)}
+              onPress={() => {
+                setIsPlaying((prevState) => !prevState);
+                console.log(nowPlaying.videoId);
+              }}
               aria-label={isPlaying ? "Pause audio" : "Play audio"}
               disabled={nowPlaying.videoId.length > 0 ? false : true}
             >
@@ -81,7 +91,9 @@ const Player: React.FC = () => {
         </div>
       </div>
 
-      <div className={isMinimized ? "flex-container container": "flex-container"}>
+      <div
+        className={isMinimized ? "flex-container container" : "flex-container"}
+      >
         <div
           className="player-content"
           style={!isMinimized ? { display: "none" } : {}}
@@ -95,7 +107,7 @@ const Player: React.FC = () => {
           </Link>
           <Pressable
             className="player-toggle"
-            onPress={() => setIsPlaying(prevState => !prevState)}
+            onPress={() => setIsPlaying((prevState) => !prevState)}
             aria-label={isPlaying ? "Pause" : "Play"}
             disabled={nowPlaying.videoId.length > 0 ? false : true}
           >
@@ -118,14 +130,18 @@ const Player: React.FC = () => {
             <div
               ref={titleRef}
               className={overflow ? "details__title marquee" : "details__title"}
-              data-name={nowPlaying.title ? `${nowPlaying.title}   ` : "Song Title"}
+              data-name={
+                nowPlaying.title ? `${nowPlaying.title}   ` : "Song Title"
+              }
             >
               {nowPlaying.title ? `${nowPlaying.title}   ` : "Song Title"}
             </div>
             <div
               style={{ display: hidden ? "none" : "inherit" }}
               className={overflow ? "details__title marquee" : "details__title"}
-              data-name={nowPlaying.title ? `${nowPlaying.title}   ` : "Song Title"}
+              data-name={
+                nowPlaying.title ? `${nowPlaying.title}   ` : "Song Title"
+              }
             >
               {nowPlaying.title ? `${nowPlaying.title}   ` : "Song Title"}
             </div>
@@ -177,7 +193,7 @@ const Player: React.FC = () => {
           ></path>
         </symbol>
 
-        <symbol fill="none" viewBox="0 0 24 24" id='chevron-down-icon'>
+        <symbol fill="none" viewBox="0 0 24 24" id="chevron-down-icon">
           <path
             d="m15.25 10.75-3.25 3.5-3.25-3.5"
             stroke="currentColor"
@@ -185,6 +201,34 @@ const Player: React.FC = () => {
             strokeLinejoin="round"
             strokeWidth="2"
           />
+        </symbol>
+
+        <symbol fill="none" viewBox="0 0 24 24" id="music">
+          <circle
+            cx="7"
+            cy="17"
+            r="2.25"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+          ></circle>
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M9.25 17V6.75C9.25 5.64543 10.1454 4.75 11.25 4.75H17.25C18.3546 4.75 19.25 5.64543 19.25 6.75V14"
+          ></path>
+          <circle
+            cx="17"
+            cy="14"
+            r="2.25"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+          ></circle>
         </symbol>
       </svg>
     </div>

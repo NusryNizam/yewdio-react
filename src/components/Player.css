@@ -78,8 +78,13 @@
 }
 
 .details {
+  /* max-width: 268px; */
   max-width: calc(100vw - (86px));
   overflow: hidden;
+}
+
+.maximized .details {
+  max-width: 278px;
 }
 
 .details__title-wrapper {
@@ -141,6 +146,13 @@
   width: 300px;
   height: 300px;
   border: 1px solid gray;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.album-art > img {
+   scale: 1.35;
 }
 
 .player-controls {
