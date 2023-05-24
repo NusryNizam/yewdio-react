@@ -17,7 +17,7 @@ const Player: React.FC = () => {
     isPlaying,
     setIsPlaying,
     nowPlaying,
-    audioSrc,
+    convertDuration,
   } = useContext(NowPlayingContext);
 
   const titleWrapperRef = useRef<HTMLDivElement | null>(null);
@@ -49,7 +49,7 @@ const Player: React.FC = () => {
 
   return (
     <div className={isMinimized ? "player" : "player maximized"}>
-      <div style={isMinimized ? { display: "none" } : {}}>
+      <div className={isMinimized ? "hidden" : ""}>
         <div className="album-art">
           {nowPlaying.videoId.length > 0 ? (
             <img src={nowPlaying.videoThumbnails[3].url} alt="Album art" />
@@ -59,14 +59,19 @@ const Player: React.FC = () => {
             </svg>
           )}
         </div>
-        <div className="details">
+        <div className="song-info">
           <progress value={50} max={100}></progress>
-          <div>01:00/03:00</div>
+          <div>01:00/{convertDuration(nowPlaying.lengthSeconds)}</div>
 
           <div className="player-controls">
-            <Pressable className="">Previous</Pressable>
+            <Pressable className="icon-button">
+              <svg className="icon">
+                <use xlinkHref="#previous"></use>
+              </svg>
+            </Pressable>
             <Pressable
-              className="player-toggle"
+              // className="player-toggle"
+              className="icon-button accent-button"
               onPress={() => {
                 setIsPlaying((prevState) => !prevState);
                 console.log(nowPlaying.videoId);
@@ -86,7 +91,11 @@ const Player: React.FC = () => {
                 )}
               </div>
             </Pressable>
-            <Pressable className="">Next</Pressable>
+            <Pressable className="icon-button">
+              <svg className="icon">
+                <use xlinkHref="#next"></use>
+              </svg>
+            </Pressable>
           </div>
         </div>
       </div>
@@ -130,20 +139,24 @@ const Player: React.FC = () => {
             <div
               ref={titleRef}
               className={overflow ? "details__title marquee" : "details__title"}
-              data-name={
-                nowPlaying.title ? `${nowPlaying.title}   ` : "Song Title"
-              }
             >
-              {nowPlaying.title ? `${nowPlaying.title}   ` : "Song Title"}
+              {nowPlaying.title
+                ? !isMinimized
+                  ? ` ${nowPlaying.title} `
+                  : `${nowPlaying.title}  `
+                : isMinimized
+                ? "Audio Title "
+                : " Audio Title "}
             </div>
             <div
               style={{ display: hidden ? "none" : "inherit" }}
               className={overflow ? "details__title marquee" : "details__title"}
-              data-name={
-                nowPlaying.title ? `${nowPlaying.title}   ` : "Song Title"
-              }
             >
-              {nowPlaying.title ? `${nowPlaying.title}   ` : "Song Title"}
+              {nowPlaying.title
+                ? !isMinimized
+                  ? ` ${nowPlaying.title} `
+                  : `${nowPlaying.title}  `
+                : "Audio Title"}
             </div>
           </div>
           <p className="details__author">
@@ -152,8 +165,11 @@ const Player: React.FC = () => {
         </div>
       </div>
 
-      <Link to="../">
-        <Pressable style={isMinimized ? { display: "none" } : {}}>
+      <Link className="hide-player-btn" to="../">
+        <Pressable
+          className="icon-button"
+          style={isMinimized ? { display: "none" } : {}}
+        >
           <svg className="icon">
             <use xlinkHref="#chevron-down-icon"></use>
           </svg>
@@ -166,7 +182,7 @@ const Player: React.FC = () => {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          viewBox="0 0 24 24"
+          viewBox="-2 0 24 24"
           id="play-icon"
         >
           <polygon points="5 3 19 12 5 21 5 3"></polygon>
@@ -229,6 +245,40 @@ const Player: React.FC = () => {
             strokeLinejoin="round"
             strokeWidth="2"
           ></circle>
+        </symbol>
+
+        <symbol fill="none" viewBox="0 0 24 24" id="previous">
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M9.75 12L18.25 5.75V18.25L9.75 12Z"
+          ></path>
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M5.75 5.75V18.25"
+          ></path>
+        </symbol>
+
+        <symbol fill="none" viewBox="0 0 24 24" id="next">
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M14.25 12L5.75 5.75V18.25L14.25 12Z"
+          ></path>
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M18.25 5.75V18.25"
+          ></path>
         </symbol>
       </svg>
     </div>

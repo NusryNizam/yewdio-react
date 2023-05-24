@@ -22,9 +22,10 @@
   text-align: center;
   /* justify-content: flex-start; */
   /* position:static; */
+}
 
-  /* Testing */
-  background-color: rgb(34, 80, 0);
+.maximized * {
+  text-align: center;
 }
 
 .maximized > .player-content {
@@ -32,15 +33,12 @@
   margin: 0;
 }
 
-
-
 .player-content {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 0px 6px;
   max-width: 1280px;
-  /* margin: auto; */
 }
 /* 
 .player-content button {
@@ -61,7 +59,6 @@
   display: grid;
   place-items: center;
   background-color: var(--button-bg);
-
 }
 
 .player-toggle:disabled {
@@ -78,24 +75,57 @@
 }
 
 .details {
-  /* max-width: 268px; */
-  max-width: calc(100vw - (86px));
   overflow: hidden;
+  position: relative;
 }
 
 .maximized .details {
-  max-width: 278px;
+  overflow: visible;
+  max-width: 300px;
+}
+
+.maximized .song-info {
+  margin-block-end: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 300px;
+}
+
+.maximized .details::before,
+.maximized .details::after {
+  content: "";
+  position: absolute;
+  width: 1rem;
+  height: 1.5rem;
+  top: 0;
+}
+
+.maximized .details::before {
+  background: linear-gradient(to right, var(--bg-color), transparent);
+  left: 0;
+  z-index: var(--top-layer);
+}
+
+.maximized .details::after {
+  background: linear-gradient(to left, var(--bg-color), transparent);
+  right: 0;
 }
 
 .details__title-wrapper {
-  white-space: nowrap;
+  --width-el: attr(data-width);
+  display: flex;
+  flex-direction: row;
   overflow: hidden;
+  white-space: nowrap;
+  width: calc(var(--width-el) * 1px);
+  /* position: relative; */
 }
 
 .details__title-wrapper::after {
   content: "";
   position: absolute;
-  right: 1rem;
+  right: 0rem;
   width: 10px;
   height: 22px;
   background-image: linear-gradient(
@@ -104,6 +134,10 @@
     var(--minimised-player-bg)
   );
   z-index: var(--top-layer);
+}
+
+.maximized .details__title-wrapper::after {
+  content: unset;
 }
 
 .details__title {
@@ -115,14 +149,6 @@
 
 .details__author {
   color: var(--secondary-text-color);
-}
-
-.details__title-wrapper {
-  --width-el: attr(data-width);
-  display: flex;
-  flex-direction: row;
-  white-space: nowrap;
-  width: calc(var(--width-el) * 1px);
 }
 
 .details__title.marquee {
@@ -152,7 +178,11 @@
 }
 
 .album-art > img {
-   scale: 1.35;
+  scale: 1.8;
+}
+
+.maximized .album-art {
+  margin-block: 2rem;
 }
 
 .player-controls {
@@ -160,5 +190,10 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 1rem;
+  padding-block: 1rem 0.5rem;
+}
+
+.hide-player-btn {
+  margin-block: auto 4rem;
 }

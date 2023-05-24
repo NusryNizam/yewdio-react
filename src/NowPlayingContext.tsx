@@ -36,7 +36,17 @@ const defaultState = {
   setNotification: () => {},
   audioSrc: "",
   setAudioSrc: () => {},
+  convertDuration: convertDuration,
 };
+
+function convertDuration(audioDuration: number = 0) {
+  let readableFormat = new Date(audioDuration * 1000)
+    .toISOString()
+    .slice(11, 19);
+  if (readableFormat.substring(0, 3) === "00:")
+    return readableFormat.substring(3);
+  else return readableFormat;
+}
 
 const NowPlayingContext = createContext<IState>(defaultState);
 
@@ -151,6 +161,7 @@ export function ContextProvider({
         setNotification,
         audioSrc,
         setAudioSrc,
+        convertDuration,
       }}
     >
       {children}

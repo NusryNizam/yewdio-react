@@ -17,15 +17,8 @@ interface ListItemProps {
 const ListItem: FunctionComponent<ListItemProps> = (props) => {
   const { videoId, title, author, thumbnails, duration } = props;
 
-  const { setNowPlaying, setAudioSrc } =
+  const { setNowPlaying, setAudioSrc, convertDuration } =
     useContext(NowPlayingContext);
-
-  function convertDuration() {
-    let readableFormat = new Date(duration * 1000).toISOString().slice(11, 19);
-    if (readableFormat.substring(0, 3) === "00:")
-      return readableFormat.substring(3);
-    else return readableFormat;
-  }
 
   function playSong() {
     console.log("Play ", videoId);
@@ -62,7 +55,7 @@ const ListItem: FunctionComponent<ListItemProps> = (props) => {
       <div className="flex-container">
         <div className="image-container">
           <img src={thumbnails[5].url} alt={`Video thumbnail of ${title}`} />
-          <span className="duration">{convertDuration()}</span>
+          <span className="duration">{convertDuration(duration)}</span>
         </div>
         <div className="details-container">
           <h4 className="title">{title}</h4>
