@@ -37,15 +37,15 @@ const Player: React.FC = () => {
     }
   }, [titleWrapperRef, titleRef, isPlaying]);
 
-  useEffect(() => {
-    if (window.location.pathname === "/") {
-      setIsMinimized(true);
-    }
+  // useEffect(() => {
+  //   if (window.location.pathname === "/") {
+  //     setIsMinimized(true);
+  //   }
 
-    if (window.location.pathname === "/player") {
-      setIsMinimized(false);
-    }
-  });
+  //   if (window.location.pathname === "/player") {
+  //     setIsMinimized(false);
+  //   }
+  // }, []);
 
   return (
     <div className={isMinimized ? "player" : "player maximized"}>
@@ -107,13 +107,11 @@ const Player: React.FC = () => {
           className="player-content"
           style={!isMinimized ? { display: "none" } : {}}
         >
-          <Link to="player">
-            <Pressable className="icon-button">
+            <Pressable className="icon-button" onClick={() => setIsMinimized(false)}>
               <svg className="icon">
                 <use xlinkHref="#chevron-up-icon"></use>
               </svg>
             </Pressable>
-          </Link>
           <Pressable
             className="player-toggle"
             onPress={() => setIsPlaying((prevState) => !prevState)}
@@ -164,16 +162,15 @@ const Player: React.FC = () => {
         </div>
       </div>
 
-      <Link className="hide-player-btn" to="../">
         <Pressable
-          className="icon-button"
+          className="icon-button hide-player-btn"
           style={isMinimized ? { display: "none" } : {}}
+          onClick={() => setIsMinimized(true)}
         >
           <svg className="icon">
             <use xlinkHref="#chevron-down-icon"></use>
           </svg>
         </Pressable>
-      </Link>
 
       <svg width="0" height="0" className="hidden" style={{ display: "none" }}>
         <symbol
