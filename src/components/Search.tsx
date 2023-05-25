@@ -3,6 +3,7 @@ import axios from "axios";
 
 import ISong from "../interfaces/song.interface";
 import ListItem from "./ListItem/ListItem";
+import NowPlayingContext from "../NowPlayingContext";
 
 import "./Search.css";
 import "./tabs.css";
@@ -13,6 +14,8 @@ const Search: FunctionComponent = () => {
   let [isSpinning, setIsSpinning] = useState(false);
 
   let searchRef = useRef<HTMLElement | null>(null);
+
+  const { showNotification } = useContext(NowPlayingContext);
 
   function searchItem(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") {
@@ -36,7 +39,12 @@ const Search: FunctionComponent = () => {
         setIsSpinning(false);
       })
       .catch((err) => {
-        console.error("Error: ", err);
+        showNotification({
+          type: "error",
+          message: `${err.message}: Please try again later.`,
+        });
+        setSearchTerm("");
+        setIsSpinning(false);
       });
   };
 

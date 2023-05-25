@@ -17,6 +17,7 @@ const defaultISong: ISong = {
 const defaultINotification: INotification = {
   type: "error",
   message: "",
+  duration: 5000,
 };
 
 const defaultState = {
@@ -37,6 +38,7 @@ const defaultState = {
   audioSrc: "",
   setAudioSrc: () => {},
   convertDuration: convertDuration,
+  showNotification: () => {}
 };
 
 function convertDuration(audioDuration: number = 0) {
@@ -62,10 +64,8 @@ export function ContextProvider({
   let [audioSrc, setAudioSrc] = useState("");
 
   let [isPlaying, setIsPlaying] = useState<boolean>(false);
-  let [notification, setNotification] = useState<INotification>({
-    type: "error",
-    message: "",
-  });
+  let [notification, setNotification] =
+    useState<INotification>(defaultINotification);
 
   let [nowPlaying, setNowPlaying] = useState<ISong>({
     type: "",
@@ -91,15 +91,18 @@ export function ContextProvider({
       videoThumbnails: [],
     });
 
-    setNotification({
+    showNotification({
       type: "error",
       message:
         "Error: Youtube doesn't allow this audio to be played. Please try another.",
     });
-    showNotification(5000);
   }
 
-  function showNotification(duration: number) {
+  function showNotification(
+    notificationSettings: INotification,
+    duration: number = 5000
+  ) {
+    setNotification(notificationSettings);
     setIsVisible(true);
     setTimeout(() => {
       setIsVisible(false);
@@ -151,6 +154,7 @@ export function ContextProvider({
         audioSrc,
         setAudioSrc,
         convertDuration,
+        showNotification
       }}
     >
       {children}

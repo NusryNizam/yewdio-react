@@ -17,11 +17,10 @@ interface ListItemProps {
 const ListItem: FunctionComponent<ListItemProps> = (props) => {
   const { videoId, title, author, thumbnails, duration } = props;
 
-  const { setNowPlaying, setAudioSrc, convertDuration } =
+  const { setNowPlaying, setAudioSrc, convertDuration, showNotification } =
     useContext(NowPlayingContext);
 
   function playSong() {
-
     axios
       .get(`https://yt.funami.tech/api/v1/videos/${videoId}`)
       .then((res) => {
@@ -38,8 +37,11 @@ const ListItem: FunctionComponent<ListItemProps> = (props) => {
 
         setAudioSrc(res.data.adaptiveFormats[2].url);
       })
-      .catch((e) => {
-        console.error("error", e);
+      .catch((err) => {
+        showNotification({
+          type: "error",
+          message: `${err.message}: Please try again later`,
+        });
       });
   }
 

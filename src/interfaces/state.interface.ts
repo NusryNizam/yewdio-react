@@ -19,4 +19,5 @@ export default interface IState {
   audioSrc: string;
   setAudioSrc: React.Dispatch<React.SetStateAction<string>>;
   convertDuration: (audioDuration: number) => string;
+  showNotification: (notificationSettings: INotification, duration?: number) => void
 }
