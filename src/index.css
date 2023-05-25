@@ -42,6 +42,8 @@
   --bottom-layer: -100;
   --transparent-black: rgb(0 0 0 / 60%);
   --white: #fff;
+
+  accent-color: var(--accent-color);
 }
 
 html {

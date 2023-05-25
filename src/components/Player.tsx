@@ -60,7 +60,7 @@ const Player: React.FC = () => {
           )}
         </div>
         <div className="song-info">
-          <progress value={50} max={100}></progress>
+          <progress className="progress-bar" value={50} max={100}></progress>
           <div>01:00/{convertDuration(nowPlaying.lengthSeconds)}</div>
 
           <div className="player-controls">

@@ -104,6 +104,10 @@
   max-width: 300px;
 }
 
+.progress-bar {
+  width: 100%;
+}
+
 .maximized .details::before,
 .maximized .details::after {
   content: "";
