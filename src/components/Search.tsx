@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useRef, useState } from "react";
+import React, { FunctionComponent, useContext, useRef, useState } from "react";
 import axios from "axios";
 
 import ISong from "../interfaces/song.interface";
@@ -36,7 +36,7 @@ const Search: FunctionComponent = () => {
         setIsSpinning(false);
       })
       .catch((err) => {
-        console.log("Error: ", err);
+        console.error("Error: ", err);
       });
   };
 

@@ -80,8 +80,6 @@ export function ContextProvider({
   const audioRef = useRef<HTMLAudioElement>(new Audio());
 
   function handleAudioError() {
-    console.log(audioRef.current.error);
-
     setIsPlaying(false);
     setNowPlaying({
       type: "",
@@ -109,18 +107,9 @@ export function ContextProvider({
   }
 
   useEffect(() => {
-    console.log("nowPlaying changed");
-  }, [nowPlaying]);
-  useEffect(() => {
-    console.log("audioSrc changed");
-  }, [audioSrc]);
-
-  useEffect(() => {
-    console.log("triggered");
+    console.info("112:22: NowPlayingContext.tsx");
 
     if (nowPlaying.videoId) {
-      console.log("Playinggggg");
-
       audioRef.current.src = audioSrc;
       audioRef.current.play();
 

@@ -21,7 +21,6 @@ const ListItem: FunctionComponent<ListItemProps> = (props) => {
     useContext(NowPlayingContext);
 
   function playSong() {
-    console.log("Play ", videoId);
 
     axios
       .get(`https://yt.funami.tech/api/v1/videos/${videoId}`)
@@ -38,10 +37,9 @@ const ListItem: FunctionComponent<ListItemProps> = (props) => {
         });
 
         setAudioSrc(res.data.adaptiveFormats[2].url);
-        console.log(res.data.adaptiveFormats[2].url);
       })
       .catch((e) => {
-        console.log("error", e);
+        console.error("error", e);
       });
   }
 

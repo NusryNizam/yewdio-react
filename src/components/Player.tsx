@@ -1,5 +1,4 @@
 import { useContext, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 import { Pressable } from "@ark-ui/react";
 
 import NowPlayingContext from "../NowPlayingContext";
@@ -37,16 +36,6 @@ const Player: React.FC = () => {
     }
   }, [titleWrapperRef, titleRef, isPlaying]);
 
-  // useEffect(() => {
-  //   if (window.location.pathname === "/") {
-  //     setIsMinimized(true);
-  //   }
-
-  //   if (window.location.pathname === "/player") {
-  //     setIsMinimized(false);
-  //   }
-  // }, []);
-
   return (
     <div className={isMinimized ? "player" : "player maximized"}>
       <div className={isMinimized ? "hidden" : ""}>
@@ -69,13 +58,10 @@ const Player: React.FC = () => {
                 <use xlinkHref="#previous"></use>
               </svg>
             </Pressable>
+
             <Pressable
-              // className="player-toggle"
               className="icon-button accent-button"
-              onPress={() => {
-                setIsPlaying((prevState) => !prevState);
-                console.log(nowPlaying.videoId);
-              }}
+              onPress={() => setIsPlaying((prevState) => !prevState)}
               aria-label={isPlaying ? "Pause audio" : "Play audio"}
               disabled={nowPlaying.videoId.length > 0 ? false : true}
             >
@@ -91,6 +77,7 @@ const Player: React.FC = () => {
                 )}
               </div>
             </Pressable>
+
             <Pressable className="icon-button">
               <svg className="icon">
                 <use xlinkHref="#next"></use>
@@ -107,11 +94,15 @@ const Player: React.FC = () => {
           className="player-content"
           style={!isMinimized ? { display: "none" } : {}}
         >
-            <Pressable className="icon-button" onClick={() => setIsMinimized(false)}>
-              <svg className="icon">
-                <use xlinkHref="#chevron-up-icon"></use>
-              </svg>
-            </Pressable>
+          <Pressable
+            className="icon-button"
+            onClick={() => setIsMinimized(false)}
+          >
+            <svg className="icon">
+              <use xlinkHref="#chevron-up-icon"></use>
+            </svg>
+          </Pressable>
+
           <Pressable
             className="player-toggle"
             onPress={() => setIsPlaying((prevState) => !prevState)}
@@ -162,15 +153,15 @@ const Player: React.FC = () => {
         </div>
       </div>
 
-        <Pressable
-          className="icon-button hide-player-btn"
-          style={isMinimized ? { display: "none" } : {}}
-          onClick={() => setIsMinimized(true)}
-        >
-          <svg className="icon">
-            <use xlinkHref="#chevron-down-icon"></use>
-          </svg>
-        </Pressable>
+      <Pressable
+        className="icon-button hide-player-btn"
+        style={isMinimized ? { display: "none" } : {}}
+        onClick={() => setIsMinimized(true)}
+      >
+        <svg className="icon">
+          <use xlinkHref="#chevron-down-icon"></use>
+        </svg>
+      </Pressable>
 
       <svg width="0" height="0" className="hidden" style={{ display: "none" }}>
         <symbol

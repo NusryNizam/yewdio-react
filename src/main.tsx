@@ -11,7 +11,7 @@ let router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-  }
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
