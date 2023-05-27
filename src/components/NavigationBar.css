@@ -1,6 +1,7 @@
 .tab-list-wrapper {
   background-color: var(--nav-button-color);
   height: var(--nav-tabs-height);
+  z-index: var(--top-layer);
 }
 
 .tab-list {
