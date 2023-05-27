@@ -24,12 +24,12 @@ const NavigationBar: FC = () => {
         <TabContent value="search">
           <Search />
         </TabContent>
-        <TabContent value="playlists">
+        {/* <TabContent value="playlists">
           <Playlists />
         </TabContent>
         <TabContent value="settings">
           <Settings />
-        </TabContent>
+        </TabContent> */}
         <div className="tab-list-wrapper">
           <div className="tab-list">
             <TabList>
@@ -47,7 +47,7 @@ const NavigationBar: FC = () => {
                   </svg>
                 </button>
               </TabTrigger>
-              <TabTrigger value="playlists">
+              {/* <TabTrigger value="playlists">
                 <button title="Playlists">
                   <svg className="icon">
                     <use xlinkHref="#playlist-icon"></use>
@@ -60,11 +60,11 @@ const NavigationBar: FC = () => {
                     <use xlinkHref="#settings-icon"></use>
                   </svg>
                 </button>
-              </TabTrigger>
+              </TabTrigger> */}
               <TabIndicator
                 style={{
                   backgroundColor: "#0f6bff",
-                  maxWidth: "100px",
+                  maxWidth: "100%",
                   height: "64px",
                   margin: "auto",
                   mixBlendMode: "lighten",
