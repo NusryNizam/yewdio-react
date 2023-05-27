@@ -38,7 +38,9 @@ const defaultState = {
   audioSrc: "",
   setAudioSrc: () => {},
   convertDuration: convertDuration,
-  showNotification: () => {}
+  showNotification: () => {},
+  currentTime: 0,
+  progress: 0,
 };
 
 function convertDuration(audioDuration: number = 0) {
@@ -64,6 +66,8 @@ export function ContextProvider({
   let [audioSrc, setAudioSrc] = useState("");
 
   let [isPlaying, setIsPlaying] = useState<boolean>(false);
+  let [currentTime, setCurrentTime] = useState(0);
+  let [progress, setProgress] = useState(0);
   let [notification, setNotification] =
     useState<INotification>(defaultINotification);
 
@@ -109,6 +113,14 @@ export function ContextProvider({
     }, duration);
   }
 
+  const handlePlay = () => {
+    setIsPlaying(true);
+  };
+
+  const handlePause = () => {
+    setIsPlaying(false);
+  };
+
   useEffect(() => {
     console.info("112:22: NowPlayingContext.tsx");
 
@@ -118,6 +130,8 @@ export function ContextProvider({
 
       if (audioRef.current) {
         audioRef.current.onerror = handleAudioError;
+        audioRef.current.onplay = handlePlay;
+        audioRef.current.onpause = handlePause;
       }
 
       setIsPlaying(true);
@@ -126,12 +140,26 @@ export function ContextProvider({
 
   useEffect(() => {
     console.info("36:21: App.tsx");
+    let interval: number;
 
     if (isPlaying) {
       audioRef.current.play();
+      interval = setInterval(() => {
+        console.log("setInterval");
+        setCurrentTime(audioRef.current.currentTime);
+        setProgress(
+          Math.round(
+            (audioRef.current.currentTime / nowPlaying.lengthSeconds) * 100
+          )
+        );
+      }, 1000);
     } else {
       audioRef.current.pause();
     }
+
+    return () => {
+      clearInterval(interval);
+    };
   }, [isPlaying]);
 
   return (
@@ -154,7 +182,9 @@ export function ContextProvider({
         audioSrc,
         setAudioSrc,
         convertDuration,
-        showNotification
+        showNotification,
+        currentTime,
+        progress,
       }}
     >
       {children}

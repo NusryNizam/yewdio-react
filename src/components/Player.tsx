@@ -17,6 +17,8 @@ const Player: React.FC = () => {
     setIsPlaying,
     nowPlaying,
     convertDuration,
+    currentTime,
+    progress,
   } = useContext(NowPlayingContext);
 
   const titleWrapperRef = useRef<HTMLDivElement | null>(null);
@@ -49,8 +51,15 @@ const Player: React.FC = () => {
           )}
         </div>
         <div className="song-info">
-          <progress className="progress-bar" value={50} max={100}></progress>
-          <div>01:00/{convertDuration(nowPlaying.lengthSeconds)}</div>
+          <progress
+            className="progress-bar"
+            value={progress}
+            max={100}
+          ></progress>
+          <div>
+            {convertDuration(currentTime)}/
+            {convertDuration(nowPlaying.lengthSeconds)}
+          </div>
 
           <div className="player-controls">
             <Pressable className="icon-button">
