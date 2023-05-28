@@ -155,6 +155,7 @@ span.bold {
   background: var(--button-hover-color);
 }
 
+
 .accent-button {
   background: var(--accent-color);
   scale: 1.2;
@@ -168,4 +169,16 @@ span.bold {
 
 .accent-button svg {
   stroke: var(--white);
+}
+
+.icon-button[data-disabled=""],
+.icon-button[data-disabled=""]:hover,
+.accent-button[data-disabled=""],
+.accent-button[data-disabled=""]:hover,
+.accent-button svg {
+  background-color: transparent;
+  color: var(--disabled-bg);
+  cursor: default;
+  stroke: var(--disabled-bg);
+
 }

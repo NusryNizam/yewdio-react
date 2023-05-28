@@ -62,7 +62,10 @@ const Player: React.FC = () => {
           </div>
 
           <div className="player-controls">
-            <Pressable className="icon-button">
+            <Pressable
+              className="icon-button"
+              disabled={nowPlaying.videoId.length === 0}
+            >
               <svg className="icon">
                 <use xlinkHref="#previous"></use>
               </svg>
@@ -87,7 +90,10 @@ const Player: React.FC = () => {
               </div>
             </Pressable>
 
-            <Pressable className="icon-button">
+            <Pressable
+              className="icon-button"
+              disabled={nowPlaying.videoId.length === 0}
+            >
               <svg className="icon">
                 <use xlinkHref="#next"></use>
               </svg>
