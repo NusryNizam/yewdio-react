@@ -18,7 +18,7 @@
   --accent-color: #0f6bff;
   --error-bg: hsl(0, 100%, 37%);
   --success-bg: hsl(83, 100%, 30%);
-  --info-bg: hsl(43, 100%, 76%);
+  --info-bg: hsl(43, 100%, 26%);
 
   --bg-color: hsl(0, 0%, 14%);
   --player-border: rgba(255, 255, 255, 0.08);
@@ -38,10 +38,13 @@
   --button-hover-color: hsl(0, 0%, 26%);
 
   --top-layer: 100;
+  --topmost-layer: 1000;
   --middle-layer: 0;
   --bottom-layer: -100;
   --transparent-black: rgb(0 0 0 / 60%);
   --white: #fff;
+  --fill-heart: transparent;
+  --stroke-heart: white;
 
   accent-color: var(--accent-color);
 }
@@ -159,10 +162,10 @@ span.bold {
   background: var(--button-hover-color);
 }
 
-.icon-button[data-pressed], .accent-button[data-pressed] {
+.icon-button[data-pressed],
+.accent-button[data-pressed] {
   scale: 0.9;
 }
-
 
 .accent-button {
   background: var(--accent-color);
@@ -189,5 +192,4 @@ span.bold {
   color: var(--disabled-bg);
   cursor: default;
   stroke: var(--disabled-bg);
-
 }

@@ -17,10 +17,16 @@ interface ListItemProps {
 const ListItem: FunctionComponent<ListItemProps> = (props) => {
   const { videoId, title, author, thumbnails, duration } = props;
 
-  const { setNowPlaying, setAudioSrc, convertDuration, showNotification } =
-    useContext(NowPlayingContext);
+  const {
+    setNowPlaying,
+    setAudioSrc,
+    convertDuration,
+    showNotification,
+    checkIfLiked,
+  } = useContext(NowPlayingContext);
 
   function playSong() {
+    checkIfLiked(videoId);
     axios
       .get(`https://yt.funami.tech/api/v1/videos/${videoId}`)
       .then((res) => {

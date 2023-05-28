@@ -4,7 +4,7 @@
   bottom: 0;
   left: 0;
   padding: 1rem;
-  z-index: var(--top-layer);
+  z-index: var(--topmost-layer);
   translate: 0px 200px;
   animation: appearFromBottom ease-in-out 5000ms;
 }

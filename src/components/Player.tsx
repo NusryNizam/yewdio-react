@@ -140,7 +140,10 @@ const Player: React.FC = () => {
             </div>
           </Pressable>
         </div>
-        <div className={isMinimized ? 'details' : 'details mb-1'} ref={titleWrapperRef}>
+        <div
+          className={isMinimized ? "details" : "details mb-1"}
+          ref={titleWrapperRef}
+        >
           <div className="details__title-wrapper">
             <div
               ref={titleRef}
@@ -323,7 +326,7 @@ const Player: React.FC = () => {
         <symbol fill="none" viewBox="0 0 24 24" id="heart">
           <path
             fillRule="evenodd"
-            stroke="currentColor"
+            // stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth="2"
@@ -349,7 +352,10 @@ const Player: React.FC = () => {
           <path d="m 19.431286,16.840212 c 0,0.98076 -0.219527,1.775823 -1.432055,1.775823 -1.126075,0 -1.432055,-0.795063 -1.432055,-1.775823 0,-0.98076 0.323853,-1.775823 1.432055,-1.775823 1.135898,0 1.432055,0.795063 1.432055,1.775823 z"></path>
         </symbol>
         <symbol fill="none" id="rewind" viewBox="0 0 24 24">
-          <path strokeWidth="2" d="m 15.151404,18.557009 c 3.69788,-0.990844 5.892367,-4.791806 4.901523,-8.489686 C 19.062083,6.369442 15.261122,4.1749559 11.563241,5.1658001 8.7565577,5.9178486 6.8159467,8.288744 6.4768197,11.004712"></path>
+          <path
+            strokeWidth="2"
+            d="m 15.151404,18.557009 c 3.69788,-0.990844 5.892367,-4.791806 4.901523,-8.489686 C 19.062083,6.369442 15.261122,4.1749559 11.563241,5.1658001 8.7565577,5.9178486 6.8159467,8.288744 6.4768197,11.004712"
+          ></path>
           <path
             stroke="currentColor"
             strokeLinecap="round"

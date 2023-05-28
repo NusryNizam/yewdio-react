@@ -43,7 +43,8 @@ const defaultState = {
   progress: 0,
   forwardTen: () => {},
   rewindTen: () => {},
-  addToLikes:() => {}
+  addToLikes: () => {},
+  checkIfLiked: () => {},
 };
 
 function convertDuration(audioDuration: number = 0) {
@@ -84,7 +85,22 @@ export function ContextProvider({
     videoThumbnails: [],
   });
 
+  let [likes, setLikes] = useState<ISong[]>([]);
+
   const audioRef = useRef<HTMLAudioElement>(new Audio());
+
+  function retrieveLikes(): ISong[] {
+    if (localStorage.getItem("likes") != null) {
+      let likes = JSON.parse(localStorage.getItem("likes") as string);
+      setLikes(likes);
+    }
+
+    return likes.length ? likes : [];
+  }
+
+  useEffect(() => {
+    retrieveLikes();
+  }, []);
 
   function handleAudioError() {
     setIsPlaying(false);
@@ -125,16 +141,65 @@ export function ContextProvider({
   };
 
   const forwardTen = () => {
-    audioRef.current.currentTime += 10
-  }
+    audioRef.current.currentTime += 10;
+  };
 
   const rewindTen = () => {
-    audioRef.current.currentTime -= 10
+    audioRef.current.currentTime -= 10;
+  };
+
+  const checkIfLiked = (selectedVideoId: string) => {
+    if (likes.length > 0) {
+      let filteredSong = likes.filter(
+        (likedSong) => selectedVideoId === likedSong.videoId
+      );
+
+      if (filteredSong.length > 0) {
+        setLike();
+        return;
+      }
+
+      if (filteredSong.length === 0) {
+        unsetLike();
+      }
+    }
+  };
+
+  function setLike() {
+    document.documentElement.style.setProperty("--fill-heart", "red");
+    document.documentElement.style.setProperty("--stroke-heart", "red");
   }
-  
+
+  function unsetLike() {
+    document.documentElement.style.setProperty("--fill-heart", "transparent");
+    document.documentElement.style.setProperty("--stroke-heart", "white");
+  }
+
   const addToLikes = () => {
-    // localStorage.setItem('likes', JSON.stringify(nowPlaying))
-  }
+    let filteredSong = likes.filter(
+      (likedSong) => nowPlaying.videoId === likedSong.videoId
+    );
+    console.log(filteredSong);
+
+    if (filteredSong.length > 0) {
+      let songsAfterRemovedFromLikes = likes.filter(
+        (likedSong) => filteredSong[0].videoId != likedSong.videoId
+      );
+      console.log(songsAfterRemovedFromLikes);
+      localStorage.setItem("likes", JSON.stringify(songsAfterRemovedFromLikes));
+      setLikes(songsAfterRemovedFromLikes);
+      unsetLike();
+      showNotification({ type: "info", message: "Removed from favourites" });
+      return;
+    }
+
+    if (filteredSong.length === 0) {
+      setLike();
+      showNotification({ type: "success", message: "Added to favourites" });
+      localStorage.setItem("likes", JSON.stringify([...likes, nowPlaying]));
+      setLikes((prev) => [...prev, nowPlaying]);
+    }
+  };
 
   useEffect(() => {
     console.info("112:22: NowPlayingContext.tsx");
@@ -203,6 +268,7 @@ export function ContextProvider({
         forwardTen,
         rewindTen,
         addToLikes,
+        checkIfLiked,
       }}
     >
       {children}

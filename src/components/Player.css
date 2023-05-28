@@ -120,7 +120,12 @@
 }
 
 .maximized .details::after {
-  background: linear-gradient(to left, var(--bg-color), var(--bg-color) 50%, transparent);
+  background: linear-gradient(
+    to left,
+    var(--bg-color),
+    var(--bg-color) 50%,
+    transparent
+  );
   right: 0;
   width: 1.4rem;
 }
@@ -213,4 +218,9 @@
 
 .hide-player-btn {
   margin-block: auto 4rem;
+}
+
+#heart {
+  fill: var(--fill-heart);
+  stroke: var(--stroke-heart);
 }
