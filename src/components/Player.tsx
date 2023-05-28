@@ -19,6 +19,9 @@ const Player: React.FC = () => {
     convertDuration,
     currentTime,
     progress,
+    forwardTen,
+    rewindTen,
+    addToLikes,
   } = useContext(NowPlayingContext);
 
   const titleWrapperRef = useRef<HTMLDivElement | null>(null);
@@ -137,7 +140,7 @@ const Player: React.FC = () => {
             </div>
           </Pressable>
         </div>
-        <div className="details" ref={titleWrapperRef}>
+        <div className={isMinimized ? 'details' : 'details mb-1'} ref={titleWrapperRef}>
           <div className="details__title-wrapper">
             <div
               ref={titleRef}
@@ -167,6 +170,40 @@ const Player: React.FC = () => {
           </p>
         </div>
       </div>
+
+      {!isMinimized && (
+        <div className="audio-actions">
+          <Pressable
+            className="icon-button"
+            disabled={nowPlaying.videoId.length === 0}
+            onPress={rewindTen}
+          >
+            <svg className="icon">
+              <use xlinkHref="#rewind"></use>
+            </svg>
+          </Pressable>
+
+          <Pressable
+            className="icon-button"
+            disabled={nowPlaying.videoId.length === 0}
+            onPress={addToLikes}
+          >
+            <svg className="icon">
+              <use xlinkHref="#heart"></use>
+            </svg>
+          </Pressable>
+
+          <Pressable
+            className="icon-button"
+            disabled={nowPlaying.videoId.length === 0}
+            onPress={forwardTen}
+          >
+            <svg className="icon">
+              <use xlinkHref="#forward"></use>
+            </svg>
+          </Pressable>
+        </div>
+      )}
 
       <Pressable
         className="icon-button hide-player-btn"
@@ -281,6 +318,47 @@ const Player: React.FC = () => {
             strokeWidth="2"
             d="M18.25 5.75V18.25"
           ></path>
+        </symbol>
+
+        <symbol fill="none" viewBox="0 0 24 24" id="heart">
+          <path
+            fillRule="evenodd"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M11.995 7.23319C10.5455 5.60999 8.12832 5.17335 6.31215 6.65972C4.49599 8.14609 4.2403 10.6312 5.66654 12.3892L11.995 18.25L18.3235 12.3892C19.7498 10.6312 19.5253 8.13046 17.6779 6.65972C15.8305 5.18899 13.4446 5.60999 11.995 7.23319Z"
+            clipRule="evenodd"
+          ></path>
+        </symbol>
+
+        <symbol fill="none" id="forward" viewBox="0 0 24 24">
+          <path
+            id="path1044"
+            strokeWidth="2"
+            d="M 10.23067,18.557009 C 6.5327896,17.566165 4.3383026,13.765203 5.3291466,10.067323 6.3199908,6.369442 10.120952,4.1749559 13.818833,5.1658001 c 2.806683,0.7520485 4.747294,3.1229439 5.086421,5.8389119"
+          ></path>
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="m 20.289675,8.0431197 -0.628336,3.3041933 -3.21998,-0.971714"
+          ></path>
+          <path d="m 13.779629,15.014623 h 0.468153 v 3.558193"></path>
+          <path d="m 19.431286,16.840212 c 0,0.98076 -0.219527,1.775823 -1.432055,1.775823 -1.126075,0 -1.432055,-0.795063 -1.432055,-1.775823 0,-0.98076 0.323853,-1.775823 1.432055,-1.775823 1.135898,0 1.432055,0.795063 1.432055,1.775823 z"></path>
+        </symbol>
+        <symbol fill="none" id="rewind" viewBox="0 0 24 24">
+          <path strokeWidth="2" d="m 15.151404,18.557009 c 3.69788,-0.990844 5.892367,-4.791806 4.901523,-8.489686 C 19.062083,6.369442 15.261122,4.1749559 11.563241,5.1658001 8.7565577,5.9178486 6.8159467,8.288744 6.4768197,11.004712"></path>
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="m 5.0923987,8.0431197 0.628336,3.3041933 3.21998,-0.971714"
+          ></path>
+          <path d="m 6.3958293,15.014623 h 0.468153 v 3.558193"></path>
+          <path d="m 12.047486,16.840212 c 0,0.98076 -0.219527,1.775823 -1.432055,1.775823 -1.1260747,0 -1.4320547,-0.795063 -1.4320547,-1.775823 0,-0.98076 0.323853,-1.775823 1.4320547,-1.775823 1.135898,0 1.432055,0.795063 1.432055,1.775823 z"></path>
         </symbol>
       </svg>
     </div>

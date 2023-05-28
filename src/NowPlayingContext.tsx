@@ -41,6 +41,9 @@ const defaultState = {
   showNotification: () => {},
   currentTime: 0,
   progress: 0,
+  forwardTen: () => {},
+  rewindTen: () => {},
+  addToLikes:() => {}
 };
 
 function convertDuration(audioDuration: number = 0) {
@@ -121,6 +124,18 @@ export function ContextProvider({
     setIsPlaying(false);
   };
 
+  const forwardTen = () => {
+    audioRef.current.currentTime += 10
+  }
+
+  const rewindTen = () => {
+    audioRef.current.currentTime -= 10
+  }
+  
+  const addToLikes = () => {
+    // localStorage.setItem('likes', JSON.stringify(nowPlaying))
+  }
+
   useEffect(() => {
     console.info("112:22: NowPlayingContext.tsx");
 
@@ -185,6 +200,9 @@ export function ContextProvider({
         showNotification,
         currentTime,
         progress,
+        forwardTen,
+        rewindTen,
+        addToLikes,
       }}
     >
       {children}

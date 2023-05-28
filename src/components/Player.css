@@ -206,6 +206,11 @@
   padding-block: 1rem 0.5rem;
 }
 
+.audio-actions {
+  display: flex;
+  gap: 1rem;
+}
+
 .hide-player-btn {
   margin-block: auto 4rem;
 }

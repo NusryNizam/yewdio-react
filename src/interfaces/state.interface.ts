@@ -20,6 +20,9 @@ export default interface IState {
   setAudioSrc: React.Dispatch<React.SetStateAction<string>>;
   convertDuration: (audioDuration: number) => string;
   showNotification: (notificationSettings: INotification, duration?: number) => void,
-  currentTime: number
-  progress: number
+  currentTime: number;
+  progress: number;
+  forwardTen: () => void,
+  rewindTen: () => void,
+  addToLikes: () => void,
 }

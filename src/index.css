@@ -139,6 +139,10 @@ span.bold {
   font-family: "Satoshi-Bold";
 }
 
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
 .icon-button {
   border: none;
   border-radius: 50%;
@@ -153,6 +157,10 @@ span.bold {
 
 .icon-button:hover {
   background: var(--button-hover-color);
+}
+
+.icon-button[data-pressed], .accent-button[data-pressed] {
+  scale: 0.9;
 }
 
 
