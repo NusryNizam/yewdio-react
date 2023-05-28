@@ -173,9 +173,10 @@ span.bold {
 
 .icon-button[data-disabled=""],
 .icon-button[data-disabled=""]:hover,
+.icon-button[data-disabled=""] svg,
 .accent-button[data-disabled=""],
 .accent-button[data-disabled=""]:hover,
-.accent-button svg {
+.accent-button[data-disabled=""] svg {
   background-color: transparent;
   color: var(--disabled-bg);
   cursor: default;

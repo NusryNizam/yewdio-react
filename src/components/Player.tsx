@@ -119,10 +119,10 @@ const Player: React.FC = () => {
           </Pressable>
 
           <Pressable
-            className="player-toggle"
+            className="icon-button"
             onPress={() => setIsPlaying((prevState) => !prevState)}
             aria-label={isPlaying ? "Pause" : "Play"}
-            disabled={nowPlaying.videoId.length > 0 ? false : true}
+            disabled={nowPlaying.videoId.length === 0}
           >
             <div>
               {isPlaying ? (
