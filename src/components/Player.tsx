@@ -178,7 +178,7 @@ const Player: React.FC = () => {
       </div>
 
       {!isMinimized && (
-        <div className="audio-actions">
+        <div className="audio-actions mb-1">
           <Pressable
             className="icon-button"
             disabled={nowPlaying.videoId.length === 0}

@@ -4,7 +4,7 @@ const Dashboard: React.FC = () => {
   return (
     <section className="container">
       <h2>Dashboard</h2>
-      <p>Dashboard</p>
+      <p>Favourites</p>
     </section>
   );
 };
