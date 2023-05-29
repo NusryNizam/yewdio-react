@@ -29,4 +29,5 @@ export default interface IState {
   rewindTen: () => void;
   addToLikes: () => void;
   checkIfLiked: (selectedVideoId: string) => void;
+  likes: ISong[];
 }

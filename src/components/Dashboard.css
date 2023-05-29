@@ -1,0 +1,14 @@
+.list-title {
+  font-family: "Satoshi-Bold";
+  margin-block: 1rem 0.4rem;
+}
+
+.empty-list {
+  margin-block-start: 0.6rem;
+  color: var(--secondary-text-color);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 2rem;
+  border: 1px dashed var(--button-hover-color);
+  border-radius: 4px;
+}

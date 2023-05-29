@@ -45,6 +45,7 @@ const defaultState = {
   rewindTen: () => {},
   addToLikes: () => {},
   checkIfLiked: () => {},
+  likes: [],
 };
 
 function convertDuration(audioDuration: number = 0) {
@@ -269,6 +270,7 @@ export function ContextProvider({
         rewindTen,
         addToLikes,
         checkIfLiked,
+        likes,
       }}
     >
       {children}

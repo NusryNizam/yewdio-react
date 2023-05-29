@@ -138,6 +138,11 @@ img {
   max-width: 100%;
 }
 
+ul {
+  list-style-type: none;
+  margin: 0;
+}
+
 span.bold {
   font-family: "Satoshi-Bold";
 }
