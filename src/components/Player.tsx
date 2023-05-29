@@ -68,6 +68,7 @@ const Player: React.FC = () => {
             <Pressable
               className="icon-button"
               disabled={nowPlaying.videoId.length === 0}
+              aria-label="Previous audio"
             >
               <svg className="icon">
                 <use xlinkHref="#previous"></use>
@@ -96,6 +97,7 @@ const Player: React.FC = () => {
             <Pressable
               className="icon-button"
               disabled={nowPlaying.videoId.length === 0}
+              aria-label="Next audio"
             >
               <svg className="icon">
                 <use xlinkHref="#next"></use>
@@ -115,6 +117,7 @@ const Player: React.FC = () => {
           <Pressable
             className="icon-button"
             onClick={() => setIsMinimized(false)}
+            aria-label="Show player"
           >
             <svg className="icon">
               <use xlinkHref="#chevron-up-icon"></use>
@@ -180,6 +183,7 @@ const Player: React.FC = () => {
             className="icon-button"
             disabled={nowPlaying.videoId.length === 0}
             onPress={rewindTen}
+            aria-label="Rewind 10 seconds"
           >
             <svg className="icon">
               <use xlinkHref="#rewind"></use>
@@ -190,6 +194,7 @@ const Player: React.FC = () => {
             className="icon-button"
             disabled={nowPlaying.videoId.length === 0}
             onPress={addToLikes}
+            aria-label="Add to favourites"
           >
             <svg className="icon">
               <use xlinkHref="#heart"></use>
@@ -200,6 +205,7 @@ const Player: React.FC = () => {
             className="icon-button"
             disabled={nowPlaying.videoId.length === 0}
             onPress={forwardTen}
+            aria-label="Forward 10 seconds"
           >
             <svg className="icon">
               <use xlinkHref="#forward"></use>
@@ -212,6 +218,7 @@ const Player: React.FC = () => {
         className="icon-button hide-player-btn"
         style={isMinimized ? { display: "none" } : {}}
         onClick={() => setIsMinimized(true)}
+        aria-label="Hide player"
       >
         <svg className="icon">
           <use xlinkHref="#chevron-down-icon"></use>
