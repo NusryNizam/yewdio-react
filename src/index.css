@@ -36,6 +36,7 @@
   --disabled-bg: gray;
   --button-bg: hsl(0, 0%, 22%);
   --button-hover-color: hsl(0, 0%, 26%);
+  --stroke-heart: var(--icon);
 
   --top-layer: 100;
   --topmost-layer: 1000;
@@ -44,7 +45,6 @@
   --transparent-black: rgb(0 0 0 / 60%);
   --white: #fff;
   --fill-heart: transparent;
-  --stroke-heart: white;
 
   accent-color: var(--accent-color);
 }
@@ -78,6 +78,7 @@ svg {
     --disabled-bg: gray;
     --button-bg: hsl(0, 0%, 94%);
     --button-hover-color: hsl(0, 0%, 90%);
+    --stroke-heart: var(--icon);
   }
 
   a:hover {
@@ -187,12 +188,12 @@ span.bold {
   stroke: var(--white);
 }
 
-.icon-button[data-disabled=""],
-.icon-button[data-disabled=""]:hover,
-.icon-button[data-disabled=""] svg,
-.accent-button[data-disabled=""],
-.accent-button[data-disabled=""]:hover,
-.accent-button[data-disabled=""] svg {
+.icon-button[data-disabled],
+.icon-button[data-disabled]:hover,
+.icon-button[data-disabled] svg,
+.accent-button[data-disabled],
+.accent-button[data-disabled]:hover,
+.accent-button[data-disabled] svg {
   background-color: transparent;
   color: var(--disabled-bg);
   cursor: default;

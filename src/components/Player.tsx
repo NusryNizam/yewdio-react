@@ -330,7 +330,7 @@ const Player: React.FC = () => {
           ></path>
         </symbol>
 
-        <symbol fill="none" viewBox="0 0 24 24" id="heart">
+        <symbol fill="none" viewBox="0 0 24 24" id="heart" data-attr={nowPlaying.title} className="heart">
           <path
             fillRule="evenodd"
             // stroke="currentColor"

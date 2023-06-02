@@ -220,7 +220,18 @@
   margin-block: auto 4rem;
 }
 
-#heart {
+.heart {
   fill: var(--fill-heart);
+  color: var(--fill-heart);
   stroke: var(--stroke-heart);
+
+  &[data-attr=""] {
+    stroke: var(--disabled-bg);
+  }
+
+  @media (prefers-color-scheme: light) {
+    fill: var(--fill-heart);
+    color: var(--fill-heart);
+    stroke: var(--stroke-heart-in-light);
+  }
 }

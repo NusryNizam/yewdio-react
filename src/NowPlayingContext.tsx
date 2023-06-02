@@ -169,11 +169,19 @@ export function ContextProvider({
   function setLike() {
     document.documentElement.style.setProperty("--fill-heart", "red");
     document.documentElement.style.setProperty("--stroke-heart", "red");
+    document.documentElement.style.setProperty(
+      "--stroke-heart-in-light",
+      "red"
+    );
   }
 
   function unsetLike() {
     document.documentElement.style.setProperty("--fill-heart", "transparent");
     document.documentElement.style.setProperty("--stroke-heart", "white");
+    document.documentElement.style.setProperty(
+      "--stroke-heart-in-light",
+      "black"
+    );
   }
 
   const addToLikes = () => {
