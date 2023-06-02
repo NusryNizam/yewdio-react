@@ -41,6 +41,12 @@ const ListItem: FunctionComponent<ListItemProps> = (props) => {
           videoThumbnails: data.videoThumbnails,
         });
 
+        navigator.mediaSession.metadata = new MediaMetadata({
+          artist: data.author,
+          title: data.title,
+          artwork: [{src: data.videoThumbnails[3].url}]
+        })
+
         setAudioSrc(res.data.adaptiveFormats[2].url);
       })
       .catch((err) => {
