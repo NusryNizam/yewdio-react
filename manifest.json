@@ -1,0 +1,25 @@
+{
+  "name": "Yewdio",
+  "short_name": "Yewdio",
+  "description": "Listen to YouTube as audio on-the-go.",
+  "theme_color": "#6929d7",
+  "background_color": "#6929d7",
+  "categories": ["entertainment", "music"],
+  "display": "standalone",
+  "id": "/",
+  "scope": "/",
+  "start_url": "/",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./src/assets/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./src/assets/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
