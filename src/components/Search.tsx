@@ -32,7 +32,8 @@ const Search: FunctionComponent = () => {
   const getResults = () => {
     setIsSpinning(true);
     axios
-      .get(`https://yt.funami.tech/api/v1/search?q=${searchTerm}`)
+      // .get(`https://yt.funami.tech/api/v1/search?q=${searchTerm}`)
+      .get(`https://vid.priv.au/api/v1/search?q=${searchTerm}`)
       .then((res) => {
         setResults(res.data as ISong[]);
         goToTop();
