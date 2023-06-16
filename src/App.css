@@ -10,3 +10,20 @@
   width: 100%;
   margin: auto;
 }
+
+@media (max-width: 1000px) {
+  .hide-in-small-screen {
+    display: none;
+  }
+}
+
+@media (min-width: 1000px) {
+  .container {
+    width: calc(100% - 600px + 1rem);
+    margin-left: calc(200px + 1rem);
+  }
+
+  .hide-in-big-screen {
+    display: none;
+  }
+}

@@ -220,7 +220,7 @@ const Player: React.FC = () => {
         onClick={() => setIsMinimized(true)}
         aria-label="Hide player"
       >
-        <svg className="icon">
+        <svg className="icon hide-in-big-screen">
           <use xlinkHref="#chevron-down-icon"></use>
         </svg>
       </Pressable>
@@ -330,7 +330,13 @@ const Player: React.FC = () => {
           ></path>
         </symbol>
 
-        <symbol fill="none" viewBox="0 0 24 24" id="heart" data-attr={nowPlaying.title} className="heart">
+        <symbol
+          fill="none"
+          viewBox="0 0 24 24"
+          id="heart"
+          data-attr={nowPlaying.title}
+          className="heart"
+        >
           <path
             fillRule="evenodd"
             // stroke="currentColor"

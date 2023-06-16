@@ -1,4 +1,3 @@
-import { FC } from "react";
 import {
   TabContent,
   TabIndicator,
@@ -14,10 +13,18 @@ import Settings from "./Settings";
 
 import "./NavigationBar.css";
 
-const NavigationBar: FC = () => {
+type NavigationBarProps = {
+  isHorizontal: boolean;
+};
+
+const NavigationBar = (props: NavigationBarProps) => {
+  const { isHorizontal } = props;
   return (
     <nav>
-      <Tabs defaultValue="dashboard">
+      <Tabs
+        orientation={isHorizontal ? "horizontal" : "vertical"}
+        defaultValue="dashboard"
+      >
         <TabContent value="dashboard">
           <Dashboard />
         </TabContent>
@@ -38,6 +45,9 @@ const NavigationBar: FC = () => {
                   <svg className="icon">
                     <use xlinkHref="#dashboard-icon"></use>
                   </svg>
+                  <div className="hide-in-small-screen satoshi-bold">
+                    Dashboard
+                  </div>
                 </button>
               </TabTrigger>
               <TabTrigger value="search">
@@ -45,6 +55,9 @@ const NavigationBar: FC = () => {
                   <svg className="icon">
                     <use xlinkHref="#search-icon"></use>
                   </svg>
+                  <div className="hide-in-small-screen satoshi-bold">
+                    Search
+                  </div>
                 </button>
               </TabTrigger>
               <TabTrigger value="playlists">
@@ -52,6 +65,9 @@ const NavigationBar: FC = () => {
                   <svg className="icon">
                     <use xlinkHref="#playlist-icon"></use>
                   </svg>
+                  <div className="hide-in-small-screen satoshi-bold">
+                    Playlists
+                  </div>
                 </button>
               </TabTrigger>
               <TabTrigger value="settings">
@@ -59,16 +75,17 @@ const NavigationBar: FC = () => {
                   <svg className="icon">
                     <use xlinkHref="#settings-icon"></use>
                   </svg>
+                  <div className="hide-in-small-screen satoshi-bold">
+                    Settings
+                  </div>
                 </button>
               </TabTrigger>
               <TabIndicator
-                style={{
-                  backgroundColor: "#0f6bff",
-                  maxWidth: "100%",
-                  height: "64px",
-                  margin: "auto",
-                  mixBlendMode: "lighten",
-                }}
+                className={
+                  isHorizontal
+                    ? "tab-indicator"
+                    : "tab-indicator tab-indicator-vertical"
+                }
               />
             </TabList>
           </div>

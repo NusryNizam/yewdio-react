@@ -37,6 +37,7 @@
   --button-bg: hsl(0, 0%, 22%);
   --button-hover-color: hsl(0, 0%, 26%);
   --stroke-heart: var(--icon);
+  --big-screen-stroke: hsl(0, 0%, 18%);
 
   --top-layer: 100;
   --topmost-layer: 1000;
@@ -79,6 +80,7 @@ svg {
     --button-bg: hsl(0, 0%, 94%);
     --button-hover-color: hsl(0, 0%, 90%);
     --stroke-heart: var(--icon);
+    --big-screen-stroke: hsl(0, 0%, 86%);
   }
 
   a:hover {
@@ -198,4 +200,8 @@ span.bold {
   color: var(--disabled-bg);
   cursor: default;
   stroke: var(--disabled-bg);
+}
+
+.satoshi-bold {
+  font-family: "Satoshi-Bold";
 }

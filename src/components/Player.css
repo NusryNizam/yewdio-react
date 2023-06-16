@@ -11,6 +11,18 @@
   animation: slideUp 100ms ease-in-out;
 }
 
+@media (min-width: 1000px) {
+  .player.maximized {
+    inset: unset;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding-inline: 1.75rem;
+    /* background-color: var(--nav-button-color); */
+    border-left: 1px solid var(--big-screen-stroke);
+  }
+}
+
 @keyframes slideUp {
   0% {
     translate: 0px 20px;
