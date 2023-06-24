@@ -12,6 +12,7 @@ const defaultISong: ISong = {
   title: "",
   lengthSeconds: 0,
   videoThumbnails: [],
+  authorVerified: false
 };
 
 const defaultINotification: INotification = {
@@ -84,6 +85,7 @@ export function ContextProvider({
     title: "",
     lengthSeconds: 0,
     videoThumbnails: [],
+    authorVerified: false
   });
 
   let [likes, setLikes] = useState<ISong[]>([]);
@@ -113,6 +115,7 @@ export function ContextProvider({
       title: "",
       lengthSeconds: 0,
       videoThumbnails: [],
+      authorVerified: false
     });
 
     showNotification({
@@ -233,7 +236,7 @@ export function ContextProvider({
 
     if (isPlaying) {
       audioRef.current.play();
-      interval = setInterval(() => {
+      interval = window.setInterval(() => {
         console.log("setInterval");
         setCurrentTime(audioRef.current.currentTime);
         setProgress(
