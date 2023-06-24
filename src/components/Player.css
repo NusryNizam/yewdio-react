@@ -178,6 +178,8 @@
 
 .details__author {
   color: var(--secondary-text-color);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .details__title.marquee {

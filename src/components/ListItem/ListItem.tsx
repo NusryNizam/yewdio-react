@@ -12,10 +12,11 @@ interface ListItemProps {
   author: string;
   thumbnails: IThumbs[];
   duration: number;
+  isVerified: boolean;
 }
 
 const ListItem: FunctionComponent<ListItemProps> = (props) => {
-  const { videoId, title, author, thumbnails, duration } = props;
+  const { videoId, title, author, thumbnails, duration, isVerified } = props;
 
   const {
     setNowPlaying,
@@ -40,6 +41,7 @@ const ListItem: FunctionComponent<ListItemProps> = (props) => {
           title: data.title,
           lengthSeconds: data.lengthSeconds,
           videoThumbnails: data.videoThumbnails,
+          authorVerified: data.authorVerified
         });
 
         navigator.mediaSession.metadata = new MediaMetadata({
@@ -61,18 +63,18 @@ const ListItem: FunctionComponent<ListItemProps> = (props) => {
   return (
     <li
       className="list-item"
-      role="button"
       title={title}
       onClick={() => playSong()}
     >
       <div className="flex-container">
         <div className="image-container">
-          <img src={thumbnails[5].url} alt={`Video thumbnail of ${title}`} />
+          <img rel="preload" src={thumbnails[5].url} alt={`Video thumbnail of ${title}`} />
           <span className="duration">{convertDuration(duration)}</span>
         </div>
         <div className="details-container">
-          <h4 className="title">{title}</h4>
+          <div className="title">{title}</div>
           <div className="author">{author}</div>
+          <div className="isVerified">{isVerified ? 'VERIFIED' : ''}</div>
         </div>
       </div>
     </li>

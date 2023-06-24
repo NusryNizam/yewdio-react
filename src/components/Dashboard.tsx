@@ -23,6 +23,7 @@ const Dashboard: React.FC = () => {
                 author={likedAudio.author}
                 duration={likedAudio.lengthSeconds}
                 thumbnails={likedAudio.videoThumbnails}
+                isVerified={likedAudio.authorVerified}
               />
             );
           })}

@@ -35,6 +35,8 @@ const Search: FunctionComponent = () => {
       // .get(`https://yt.funami.tech/api/v1/search?q=${searchTerm}`)
       .get(`https://vid.priv.au/api/v1/search?q=${searchTerm}`)
       .then((res) => {
+        console.log(res.data);
+        
         setResults(res.data as ISong[]);
         goToTop();
         setIsSpinning(false);
@@ -93,6 +95,7 @@ const Search: FunctionComponent = () => {
                   author={song.author}
                   duration={song.lengthSeconds}
                   thumbnails={song.videoThumbnails}
+                  isVerified={song.authorVerified}
                 />
               );
             }

@@ -19,8 +19,9 @@
 
 @media (min-width: 1000px) {
   .container {
-    width: calc(100% - 600px + 1rem);
-    margin-left: calc(200px + 1rem);
+    width: calc(100% - 555px);
+    margin-left: calc(200px);
+    padding-inline: 2rem;
   }
 
   .hide-in-big-screen {

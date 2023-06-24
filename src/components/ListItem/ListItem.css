@@ -17,10 +17,24 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  font-family: 'Satoshi-Bold';
 }
 
 .author {
   color: var(--secondary-text-color);
+  font-size: 0.9rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.isVerified {
+  font-size: 0.5rem;
+  font-family: 'Satoshi-Bold';
+  background-color: lightskyblue;
+  max-width: fit-content;
+  padding: 0px 2px;
+  border-radius: 2px;
 }
 
 .flex-container {
@@ -37,6 +51,11 @@
   border-radius: 2px;
   overflow-x: hidden;
   position: relative;
+}
+
+.image-container > img {
+  width: 100px;
+  height: auto;
 }
 
 .duration {
