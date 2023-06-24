@@ -35,7 +35,7 @@
 }
 
 .tab-indicator {
-  background-color: #0f6bff;
+  background-color: var(--accent-color);
   max-width: 100%;
   height: 64px;
   margin: auto;
