@@ -40,7 +40,7 @@ function App() {
 
   function handleResize(width: number) {
     if (width > 1000) {
-      console.log(width);
+      // console.log(width);
 
       setIsMinimized(false);
       setIsHorizontal(false);
