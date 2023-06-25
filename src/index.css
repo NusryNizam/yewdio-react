@@ -39,8 +39,9 @@
   --stroke-heart: var(--icon);
   --big-screen-stroke: hsl(0, 0%, 18%);
 
-  --top-layer: 100;
+  --god-layer: 9999;
   --topmost-layer: 1000;
+  --top-layer: 100;
   --middle-layer: 0;
   --bottom-layer: -100;
   --transparent-black: rgb(0 0 0 / 60%);

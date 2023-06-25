@@ -3,6 +3,7 @@ import { ReactNode, createContext, useEffect, useRef, useState } from "react";
 import ISong from "./interfaces/song.interface";
 import INotification from "./interfaces/notification.interface";
 import IState from "./interfaces/state.interface";
+import PlaylistInterface from "./interfaces/playlist.interface";
 
 const defaultISong: ISong = {
   type: "",
@@ -12,7 +13,7 @@ const defaultISong: ISong = {
   title: "",
   lengthSeconds: 0,
   videoThumbnails: [],
-  authorVerified: false
+  authorVerified: false,
 };
 
 const defaultINotification: INotification = {
@@ -47,6 +48,12 @@ const defaultState = {
   addToLikes: () => {},
   checkIfLiked: () => {},
   likes: [],
+  selectedPlaylist: "",
+  setSelectedPlaylist: () => {},
+  itemsOfSelectedPlaylist: [],
+  setItemsOfSelectedPlaylist: () => {},
+  isPlaylistShown: false,
+  setIsPlaylistShown: () => {},
 };
 
 function convertDuration(audioDuration: number = 0) {
@@ -77,6 +84,13 @@ export function ContextProvider({
   let [notification, setNotification] =
     useState<INotification>(defaultINotification);
 
+  const [isPlaylistShown, setIsPlaylistShown] = useState(false);
+  const [selectedPlaylist, setSelectedPlaylist] =
+    useState<PlaylistInterface["title"]>("");
+  const [itemsOfSelectedPlaylist, setItemsOfSelectedPlaylist] = useState<
+    PlaylistInterface["content"]
+  >([]);
+
   let [nowPlaying, setNowPlaying] = useState<ISong>({
     type: "",
     videoId: "",
@@ -85,7 +99,7 @@ export function ContextProvider({
     title: "",
     lengthSeconds: 0,
     videoThumbnails: [],
-    authorVerified: false
+    authorVerified: false,
   });
 
   let [likes, setLikes] = useState<ISong[]>([]);
@@ -115,7 +129,7 @@ export function ContextProvider({
       title: "",
       lengthSeconds: 0,
       videoThumbnails: [],
-      authorVerified: false
+      authorVerified: false,
     });
 
     showNotification({
@@ -282,6 +296,12 @@ export function ContextProvider({
         addToLikes,
         checkIfLiked,
         likes,
+        selectedPlaylist,
+        setSelectedPlaylist,
+        itemsOfSelectedPlaylist,
+        setItemsOfSelectedPlaylist,
+        isPlaylistShown,
+        setIsPlaylistShown,
       }}
     >
       {children}

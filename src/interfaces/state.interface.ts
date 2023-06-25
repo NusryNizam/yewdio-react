@@ -1,4 +1,5 @@
 import INotification from "./notification.interface";
+import PlaylistInterface from "./playlist.interface";
 import ISong from "./song.interface";
 
 export default interface IState {
@@ -30,4 +31,10 @@ export default interface IState {
   addToLikes: () => void;
   checkIfLiked: (selectedVideoId: string) => void;
   likes: ISong[];
+  selectedPlaylist: string;
+  setSelectedPlaylist: React.Dispatch<React.SetStateAction<string>>;
+  itemsOfSelectedPlaylist: PlaylistInterface["content"];
+  setItemsOfSelectedPlaylist: React.Dispatch<React.SetStateAction<ISong[]>>;
+  isPlaylistShown: boolean;
+  setIsPlaylistShown: React.Dispatch<React.SetStateAction<boolean>>;
 }

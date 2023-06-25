@@ -6,13 +6,22 @@ import Snackbar from "./components/Snackbar/Snackbar";
 import Player from "./components/Player";
 
 import "./App.css";
+import PlaylistDetails from "./components/PlaylistDetails/PlaylistDetails";
 
 function App() {
   const [isHorizontal, setIsHorizontal] = useState(true);
 
   const nowPlayingContext = useContext(NowPlayingContext);
 
-  const { isVisible, notification, setIsMinimized } = nowPlayingContext;
+  const {
+    isVisible,
+    notification,
+    setIsMinimized,
+    selectedPlaylist,
+    itemsOfSelectedPlaylist,
+    isPlaylistShown,
+    setIsPlaylistShown,
+  } = nowPlayingContext;
 
   const rootRef = useRef<HTMLDivElement | null>(null);
 
@@ -50,6 +59,10 @@ function App() {
     }
   }
 
+  const closeModal = () => {
+    setIsPlaylistShown(false);
+  };
+
   return (
     <div ref={rootRef}>
       <NavigationBar isHorizontal={isHorizontal} />
@@ -57,6 +70,13 @@ function App() {
         <Snackbar type={notification.type} message={notification.message} />
       )}
       <Player />
+      {isPlaylistShown && (
+        <PlaylistDetails
+          name={selectedPlaylist}
+          content={itemsOfSelectedPlaylist}
+          closeEvent={closeModal}
+        />
+      )}
 
       <div style={{ display: "none" }}>
         <svg
