@@ -1,0 +1,48 @@
+.bottom-sheet {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: var(--god-layer);
+  isolation: isolate;
+}
+
+.bottom-sheet-content {
+  display: block;
+  position: relative;
+  margin-inline: auto;
+  min-width: 340px;
+  max-width: 500px;
+  background-color: var(--nav-button-color);
+  padding: 1rem;
+  border-radius: 4px 4px 0 0;
+  max-height: 400px;
+  overflow: auto;
+  z-index: var(--top-layer);
+  animation: slideUp 150ms ease-in-out;
+}
+
+.modal-bg {
+  background-color: rgb(0 0 0 / 50%);
+  backdrop-filter: blur(1px);
+  position: fixed;
+  inset: 0;
+  z-index: var(--bottom-layer);
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: var(--topmost-layer);
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    translate: 0 200px;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

@@ -21,16 +21,16 @@ const PlaylistDetails: FunctionComponent<PlaylistDetailsProps> = (props) => {
   return (
     <div className="playlist-details-container">
       <div className="playlist-details">
-        <div className="playlist-header">
-          <h4>{props.name}</h4>
-          <Pressable
+          <h4 className='playlist-title'>{props.name}</h4>
+        {/* <div className="playlist-header"> */}
+          {/* <Pressable
             className="icon-button close-btn"
             aria-label="Close"
             onPress={closeModal}
           >
             ✕
-          </Pressable>
-        </div>
+          </Pressable> */}
+        {/* </div> */}
         <div className="button-container">
           <Pressable className="flat-button" aria-label="Play all">
             Play All
@@ -61,7 +61,7 @@ const PlaylistDetails: FunctionComponent<PlaylistDetailsProps> = (props) => {
             );
           })}
       </div>
-      <div className="modal-bg" onClick={closeModal}></div>
+      {/* <div className="modal-bg" onClick={closeModal}></div> */}
     </div>
   );
 };

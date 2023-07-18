@@ -7,6 +7,7 @@ import Player from "./components/Player";
 
 import "./App.css";
 import PlaylistDetails from "./components/PlaylistDetails/PlaylistDetails";
+import BottomSheet from "./components/BottomSheet/BottomSheet";
 
 function App() {
   const [isHorizontal, setIsHorizontal] = useState(true);
@@ -70,12 +71,25 @@ function App() {
         <Snackbar type={notification.type} message={notification.message} />
       )}
       <Player />
-      {isPlaylistShown && (
+      {/* {isPlaylistShown && (
         <PlaylistDetails
           name={selectedPlaylist}
           content={itemsOfSelectedPlaylist}
           closeEvent={closeModal}
-        />
+        >
+          <h1>hello</h1>
+          <h2>hoal</h2>
+        </PlaylistDetails>
+      )} */}
+
+      {isPlaylistShown && (
+        <BottomSheet title='Title' closeEvent={closeModal}>
+          <PlaylistDetails
+            name={selectedPlaylist}
+            content={itemsOfSelectedPlaylist}
+            closeEvent={closeModal}
+          />
+        </BottomSheet>
       )}
 
       <div style={{ display: "none" }}>
