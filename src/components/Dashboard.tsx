@@ -1,17 +1,23 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import NowPlayingContext from "../NowPlayingContext";
 import ListItem from "./ListItem/ListItem";
 
 import "./Dashboard.css";
 import "./tabs.css";
+import { Pressable } from "@ark-ui/react";
 
 const Dashboard: React.FC = () => {
-  let { likes } = useContext(NowPlayingContext);
+  let { likes, playFavourites } = useContext(NowPlayingContext);
+
+  const play = () => {
+    playFavourites()
+  }
 
   return (
     <section className="container">
       <h2>Dashboard</h2>
-      <div className="list-title">Favourites</div>
+      <div className="list-title" style={{display: 'inline'}}>Favourites</div>
+      <Pressable className="button-accent float-r" onClick={play}>Play All</Pressable>
       {likes.length > 0 && (
         <ul className="favourites-list">
           {likes.map((likedAudio) => {

@@ -4,6 +4,7 @@ import ISong from "./interfaces/song.interface";
 import INotification from "./interfaces/notification.interface";
 import IState from "./interfaces/state.interface";
 import PlaylistInterface from "./interfaces/playlist.interface";
+import axios from "axios";
 
 const defaultISong: ISong = {
   type: "",
@@ -24,36 +25,38 @@ const defaultINotification: INotification = {
 
 const defaultState = {
   isVisible: false,
-  setIsVisible: () => {},
+  setIsVisible: () => { },
   overflow: false,
-  setOverflow: () => {},
+  setOverflow: () => { },
   hidden: false,
-  setHidden: () => {},
+  setHidden: () => { },
   isMinimized: false,
-  setIsMinimized: () => {},
+  setIsMinimized: () => { },
   isPlaying: false,
-  setIsPlaying: () => {},
+  setIsPlaying: () => { },
   nowPlaying: defaultISong,
-  setNowPlaying: () => {},
+  setNowPlaying: () => { },
   notification: defaultINotification,
-  setNotification: () => {},
+  setNotification: () => { },
   audioSrc: "",
-  setAudioSrc: () => {},
+  setAudioSrc: () => { },
   convertDuration: convertDuration,
-  showNotification: () => {},
+  showNotification: () => { },
   currentTime: 0,
   progress: 0,
-  forwardTen: () => {},
-  rewindTen: () => {},
-  addToLikes: () => {},
-  checkIfLiked: () => {},
+  forwardTen: () => { },
+  rewindTen: () => { },
+  addToLikes: () => { },
+  checkIfLiked: () => { },
   likes: [],
   selectedPlaylist: "",
-  setSelectedPlaylist: () => {},
+  setSelectedPlaylist: () => { },
   itemsOfSelectedPlaylist: [],
-  setItemsOfSelectedPlaylist: () => {},
+  setItemsOfSelectedPlaylist: () => { },
   isPlaylistShown: false,
-  setIsPlaylistShown: () => {},
+  setIsPlaylistShown: () => { },
+  playFavourites: () => { },
+  setIsPlayingFavourites: () => {},
 };
 
 function convertDuration(audioDuration: number = 0) {
@@ -103,7 +106,11 @@ export function ContextProvider({
   });
 
   let [likes, setLikes] = useState<ISong[]>([]);
+  let [isEnded, setIsEnded] = useState(false)
+  let [index, setIndex] = useState<number[]>([])
+  let [currentTrackIndex, setCurrentTrackIndex] = useState(0)
 
+  let [isPlayingFavourites, setIsPlayingFavourites] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(new Audio());
 
   function retrieveLikes(): ISong[] {
@@ -258,6 +265,7 @@ export function ContextProvider({
             (audioRef.current.currentTime / nowPlaying.lengthSeconds) * 100
           )
         );
+        audioRef.current.onended = listenToEnd
       }, 1000);
     } else {
       audioRef.current.pause();
@@ -268,9 +276,85 @@ export function ContextProvider({
     };
   }, [isPlaying]);
 
+  const listenToEnd = () => {
+    setIsEnded(true)
+    setCurrentTrackIndex(prev => {
+      if (prev < index.length) {
+        return prev + 1
+      } else {
+        setIsPlayingFavourites(false)
+        return prev
+      }
+    })
+  }
+
+
+  const [isFirst, setIsFirst] = useState(true)
+  useEffect(() => {
+    if (isFirst) {
+      setIsFirst(false)
+    } else {
+      if (isPlayingFavourites) {
+        setNowPlaying(likes[index[currentTrackIndex]])
+        playSong(likes[index[currentTrackIndex]].videoId)
+      }
+    }
+
+  }, [currentTrackIndex])
+
+  const playFavourites = () => {
+    setIsPlayingFavourites(true)
+    const idx: number[] = []
+    for (let i = 0; i < likes.length; i++) {
+      idx.push(i)
+    }
+    setIndex(idx.sort(() => Math.random() - 0.5))
+
+    if (likes.length > 0) {
+      setNowPlaying(likes[currentTrackIndex])
+      playSong(likes[currentTrackIndex].videoId)
+    }
+
+
+  }
+
+  function playSong(videoId: string) {
+    checkIfLiked(videoId);
+    axios
+      .get(`https://vid.priv.au/api/v1/videos/${videoId}`)
+      .then((res) => {
+        let data: ISong = res.data;
+        setNowPlaying({
+          type: data.type,
+          videoId: data.videoId,
+          authorId: "",
+          author: data.author,
+          title: data.title,
+          lengthSeconds: data.lengthSeconds,
+          videoThumbnails: data.videoThumbnails,
+          authorVerified: data.authorVerified
+        });
+
+        navigator.mediaSession.metadata = new MediaMetadata({
+          artist: data.author,
+          title: data.title,
+          artwork: [{ src: data.videoThumbnails[3].url }]
+        })
+
+        setAudioSrc(res.data.adaptiveFormats[2].url);
+      })
+    // .catch((err) => {
+    //   showNotification({
+    //     type: "error",
+    //     message: `${err.message}: Please try again later`,
+    //   });
+    // });
+  }
+
   return (
     <NowPlayingContext.Provider
       value={{
+        playFavourites,
         isVisible,
         setIsVisible,
         overflow,
@@ -302,6 +386,7 @@ export function ContextProvider({
         setItemsOfSelectedPlaylist,
         isPlaylistShown,
         setIsPlaylistShown,
+        setIsPlayingFavourites
       }}
     >
       {children}

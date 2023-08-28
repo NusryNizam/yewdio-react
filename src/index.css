@@ -206,3 +206,19 @@ span.bold {
 .satoshi-bold {
   font-family: "Satoshi-Bold";
 }
+
+.button-accent {
+  font-family: "Satoshi-bold";
+  font-size: 1rem;
+  border: none;
+  padding-inline: 0.375rem;
+  cursor: pointer;
+  color: var(--accent-color);
+  background-color: transparent;
+  border-radius: 2px;
+}
+
+.float-r {
+  display: inline;
+  float: right;
+}

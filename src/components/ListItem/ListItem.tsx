@@ -24,9 +24,11 @@ const ListItem: FunctionComponent<ListItemProps> = (props) => {
     convertDuration,
     showNotification,
     checkIfLiked,
+    setIsPlayingFavourites
   } = useContext(NowPlayingContext);
 
   function playSong() {
+    setIsPlayingFavourites(false);
     checkIfLiked(videoId);
     axios
       // .get(`https://yt.funami.tech/api/v1/videos/${videoId}`)

@@ -3,6 +3,7 @@ import PlaylistInterface from "./playlist.interface";
 import ISong from "./song.interface";
 
 export default interface IState {
+  playFavourites: () => void;
   isVisible: boolean;
   setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
   overflow: boolean;
@@ -37,4 +38,5 @@ export default interface IState {
   setItemsOfSelectedPlaylist: React.Dispatch<React.SetStateAction<ISong[]>>;
   isPlaylistShown: boolean;
   setIsPlaylistShown: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsPlayingFavourites: React.Dispatch<React.SetStateAction<boolean>>;
 }
