@@ -33,7 +33,8 @@ const Search: FunctionComponent = () => {
     setIsSpinning(true);
     axios
       // .get(`https://yt.funami.tech/api/v1/search?q=${searchTerm}`)
-      .get(`https://vid.priv.au/api/v1/search?q=${searchTerm}`)
+      //.get(`https://vid.priv.au/api/v1/search?q=${searchTerm}`)
+      .get(`https://anontube.lvkaszus.pl/api/v1/videos/${videoId}`)
       .then((res) => {
         console.log(res.data);
         
