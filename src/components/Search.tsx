@@ -34,7 +34,7 @@ const Search: FunctionComponent = () => {
     axios
       // .get(`https://yt.funami.tech/api/v1/search?q=${searchTerm}`)
       //.get(`https://vid.priv.au/api/v1/search?q=${searchTerm}`)
-      .get(`https://anontube.lvkaszus.pl/api/v1/videos/${videoId}`)
+      .get(`https://anontube.lvkaszus.pl/api/v1/search?q=${searchTerm}`)
       .then((res) => {
         console.log(res.data);
         
