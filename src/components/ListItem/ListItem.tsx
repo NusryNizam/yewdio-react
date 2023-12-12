@@ -32,8 +32,8 @@ const ListItem: FunctionComponent<ListItemProps> = (props) => {
     checkIfLiked(videoId);
     axios
       // .get(`https://yt.funami.tech/api/v1/videos/${videoId}`)
-      //.get(`https://vid.priv.au/api/v1/videos/${videoId}`)
-      .get(`https://anontube.lvkaszus.pl/api/v1/videos/${videoId}`)
+      //.get(`https://anontube.lvkaszus.pl/api/v1/videos/${videoId}`)
+      .get(`https://vid.priv.au/api/v1/videos/${videoId}`)
       .then((res) => {
         let data: ISong = res.data;
         setNowPlaying({
