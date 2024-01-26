@@ -321,7 +321,7 @@ export function ContextProvider({
   function playSong(videoId: string) {
     checkIfLiked(videoId);
     axios
-      .get(`https://vid.priv.au/api/v1/videos/${videoId}`)
+      .get(`https://invidious.private.coffee/api/v1/videos/${videoId}`)
       .then((res) => {
         let data: ISong = res.data;
         setNowPlaying({
