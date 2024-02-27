@@ -1,10 +1,17 @@
-import { ReactNode, createContext, useCallback, useEffect, useRef, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
-import ISong from "./interfaces/song.interface";
-import INotification from "./interfaces/notification.interface";
-import IState from "./interfaces/state.interface";
-import PlaylistInterface from "./interfaces/playlist.interface";
 import axios, { AxiosResponse } from "axios";
+import INotification from "./interfaces/notification.interface";
+import PlaylistInterface from "./interfaces/playlist.interface";
+import ISong from "./interfaces/song.interface";
+import IState from "./interfaces/state.interface";
 import { Instances, InvidiousData } from "./types/api.types";
 
 const defaultISong: ISong = {
@@ -26,37 +33,37 @@ const defaultINotification: INotification = {
 
 const defaultState = {
   isVisible: false,
-  setIsVisible: () => { },
+  setIsVisible: () => {},
   overflow: false,
-  setOverflow: () => { },
+  setOverflow: () => {},
   hidden: false,
-  setHidden: () => { },
+  setHidden: () => {},
   isMinimized: false,
-  setIsMinimized: () => { },
+  setIsMinimized: () => {},
   isPlaying: false,
-  setIsPlaying: () => { },
+  setIsPlaying: () => {},
   nowPlaying: defaultISong,
-  setNowPlaying: () => { },
+  setNowPlaying: () => {},
   notification: defaultINotification,
-  setNotification: () => { },
+  setNotification: () => {},
   audioSrc: "",
-  setAudioSrc: () => { },
+  setAudioSrc: () => {},
   convertDuration: convertDuration,
-  showNotification: () => { },
+  showNotification: () => {},
   currentTime: 0,
   progress: 0,
-  forwardTen: () => { },
-  rewindTen: () => { },
-  addToLikes: () => { },
-  checkIfLiked: () => { },
+  forwardTen: () => {},
+  rewindTen: () => {},
+  addToLikes: () => {},
+  checkIfLiked: () => {},
   likes: [],
   selectedPlaylist: "",
-  setSelectedPlaylist: () => { },
+  setSelectedPlaylist: () => {},
   itemsOfSelectedPlaylist: [],
-  setItemsOfSelectedPlaylist: () => { },
+  setItemsOfSelectedPlaylist: () => {},
   isPlaylistShown: false,
-  setIsPlaylistShown: () => { },
-  playFavourites: () => { },
+  setIsPlaylistShown: () => {},
+  playFavourites: () => {},
   setIsPlayingFavourites: () => {},
   uri: "",
 };
@@ -77,16 +84,16 @@ export function ContextProvider({
 }: {
   children: ReactNode;
 }): JSX.Element {
-  let [isVisible, setIsVisible] = useState(false);
-  let [overflow, setOverflow] = useState(false);
-  let [hidden, setHidden] = useState(false);
-  let [isMinimized, setIsMinimized] = useState(true);
-  let [audioSrc, setAudioSrc] = useState("");
+  const [isVisible, setIsVisible] = useState(false);
+  const [overflow, setOverflow] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(true);
+  const [audioSrc, setAudioSrc] = useState("");
 
-  let [isPlaying, setIsPlaying] = useState<boolean>(false);
-  let [currentTime, setCurrentTime] = useState(0);
-  let [progress, setProgress] = useState(0);
-  let [notification, setNotification] =
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const [notification, setNotification] =
     useState<INotification>(defaultINotification);
 
   const [isPlaylistShown, setIsPlaylistShown] = useState(false);
@@ -107,16 +114,14 @@ export function ContextProvider({
     authorVerified: false,
   });
 
-  let [likes, setLikes] = useState<ISong[]>([]);
-  let [isEnded, setIsEnded] = useState(false)
-  let [index, setIndex] = useState<number[]>([])
-  let [currentTrackIndex, setCurrentTrackIndex] = useState(0)
+  const [likes, setLikes] = useState<ISong[]>([]);
+  const [index, setIndex] = useState<number[]>([]);
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
 
-  let [isPlayingFavourites, setIsPlayingFavourites] = useState(false);
+  const [isPlayingFavourites, setIsPlayingFavourites] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(new Audio());
 
-  const [instances, setInstances] = useState<Instances[]>(); 
-  const [uri, setUri] = useState(''); 
+  const [uri, setUri] = useState("");
 
   function retrieveLikes(): ISong[] {
     if (localStorage.getItem("likes") != null) {
@@ -133,39 +138,31 @@ export function ContextProvider({
 
   useEffect(() => {
     getInstances();
-  }, [])
+  }, []);
 
   const getInstances = useCallback(async () => {
-
     try {
-      const response: AxiosResponse<InvidiousData[]> =
-        await axios.get<InvidiousData[]>(
-          `https://api.invidious.io/instances.json?sort_by=api`,
-        );
+      const response: AxiosResponse<InvidiousData[]> = await axios.get<
+        InvidiousData[]
+      >(`https://api.invidious.io/instances.json?sort_by=api`);
 
-      let transformedData: Instances[] = response.data.map(
-        ([_, value]) => ({
-          cors: value.cors,
-          api: value.api,
-          type: value.type,
-          uri: value.uri,
-        }),
-      );
+      let transformedData: Instances[] = response.data.map(([_, value]) => ({
+        cors: value.cors,
+        api: value.api,
+        type: value.type,
+        uri: value.uri,
+      }));
 
+      // This has all the instances
       transformedData = transformedData.filter(
-        (data) =>
-          data.cors && data.api && data.type === "https",
+        (data) => data.cors && data.api && data.type === "https"
       );
 
-      console.log(transformedData);
-      
-      setInstances(transformedData);
-      setUri(transformedData[0].uri)
-
+      setUri(transformedData[0].uri);
     } catch (error) {
       throw new Error("Error");
     }
-  }, [])
+  }, []);
 
   function handleAudioError() {
     setIsPlaying(false);
@@ -253,13 +250,11 @@ export function ContextProvider({
     let filteredSong = likes.filter(
       (likedSong) => nowPlaying.videoId === likedSong.videoId
     );
-    console.log(filteredSong);
 
     if (filteredSong.length > 0) {
       let songsAfterRemovedFromLikes = likes.filter(
         (likedSong) => filteredSong[0].videoId != likedSong.videoId
       );
-      console.log(songsAfterRemovedFromLikes);
       localStorage.setItem("likes", JSON.stringify(songsAfterRemovedFromLikes));
       setLikes(songsAfterRemovedFromLikes);
       unsetLike();
@@ -299,14 +294,13 @@ export function ContextProvider({
     if (isPlaying) {
       audioRef.current.play();
       interval = window.setInterval(() => {
-        console.log("setInterval");
         setCurrentTime(audioRef.current.currentTime);
         setProgress(
           Math.round(
             (audioRef.current.currentTime / nowPlaying.lengthSeconds) * 100
           )
         );
-        audioRef.current.onended = listenToEnd
+        audioRef.current.onended = listenToEnd;
       }, 1000);
     } else {
       audioRef.current.pause();
@@ -318,72 +312,65 @@ export function ContextProvider({
   }, [isPlaying]);
 
   const listenToEnd = () => {
-    setIsEnded(true)
-    setCurrentTrackIndex(prev => {
+    setCurrentTrackIndex((prev) => {
       if (prev < index.length) {
-        return prev + 1
+        return prev + 1;
       } else {
-        setIsPlayingFavourites(false)
-        return prev
+        setIsPlayingFavourites(false);
+        return prev;
       }
-    })
-  }
+    });
+  };
 
-
-  const [isFirst, setIsFirst] = useState(true)
+  const [isFirst, setIsFirst] = useState(true);
   useEffect(() => {
     if (isFirst) {
-      setIsFirst(false)
+      setIsFirst(false);
     } else {
       if (isPlayingFavourites) {
-        setNowPlaying(likes[index[currentTrackIndex]])
-        playSong(likes[index[currentTrackIndex]].videoId)
+        setNowPlaying(likes[index[currentTrackIndex]]);
+        playSong(likes[index[currentTrackIndex]].videoId);
       }
     }
-
-  }, [currentTrackIndex])
+  }, [currentTrackIndex]);
 
   const playFavourites = () => {
-    setIsPlayingFavourites(true)
-    const idx: number[] = []
+    setIsPlayingFavourites(true);
+    const idx: number[] = [];
     for (let i = 0; i < likes.length; i++) {
-      idx.push(i)
+      idx.push(i);
     }
-    setIndex(idx.sort(() => Math.random() - 0.5))
+    setIndex(idx.sort(() => Math.random() - 0.5));
 
     if (likes.length > 0) {
-      setNowPlaying(likes[currentTrackIndex])
-      playSong(likes[currentTrackIndex].videoId)
+      setNowPlaying(likes[currentTrackIndex]);
+      playSong(likes[currentTrackIndex].videoId);
     }
-
-
-  }
+  };
 
   function playSong(videoId: string) {
     checkIfLiked(videoId);
-    axios
-      .get(`${uri}/api/v1/videos/${videoId}`)
-      .then((res) => {
-        let data: ISong = res.data;
-        setNowPlaying({
-          type: data.type,
-          videoId: data.videoId,
-          authorId: "",
-          author: data.author,
-          title: data.title,
-          lengthSeconds: data.lengthSeconds,
-          videoThumbnails: data.videoThumbnails,
-          authorVerified: data.authorVerified
-        });
+    axios.get(`${uri}/api/v1/videos/${videoId}`).then((res) => {
+      let data: ISong = res.data;
+      setNowPlaying({
+        type: data.type,
+        videoId: data.videoId,
+        authorId: "",
+        author: data.author,
+        title: data.title,
+        lengthSeconds: data.lengthSeconds,
+        videoThumbnails: data.videoThumbnails,
+        authorVerified: data.authorVerified,
+      });
 
-        navigator.mediaSession.metadata = new MediaMetadata({
-          artist: data.author,
-          title: data.title,
-          artwork: [{ src: data.videoThumbnails[3].url }]
-        })
+      navigator.mediaSession.metadata = new MediaMetadata({
+        artist: data.author,
+        title: data.title,
+        artwork: [{ src: data.videoThumbnails[3].url }],
+      });
 
-        setAudioSrc(res.data.adaptiveFormats[2].url);
-      })
+      setAudioSrc(res.data.adaptiveFormats[2].url);
+    });
   }
 
   return (
@@ -422,7 +409,7 @@ export function ContextProvider({
         isPlaylistShown,
         setIsPlaylistShown,
         setIsPlayingFavourites,
-        uri
+        uri,
       }}
     >
       {children}

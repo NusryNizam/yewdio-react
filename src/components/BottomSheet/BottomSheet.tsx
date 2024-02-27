@@ -1,7 +1,7 @@
 import { FunctionComponent, ReactNode } from "react";
 
-import "./BottomSheet.css";
 import { Pressable } from "@ark-ui/react";
+import "./BottomSheet.css";
 
 type BottomSheetProps = {
   title: string;
@@ -17,13 +17,13 @@ const BottomSheet: FunctionComponent<BottomSheetProps> = (props) => {
     <div className="bottom-sheet">
       <div className="bottom-sheet-content">
         <div className="header">
-            <Pressable
-              className="icon-button close-btn"
-              aria-label="Close"
-              onPress={closeModal}
-            >
-              ✕
-            </Pressable>
+          <Pressable
+            className="icon-button close-btn"
+            aria-label="Close"
+            onPress={closeModal}
+          >
+            ✕
+          </Pressable>
         </div>
         <div>{props.children}</div>
       </div>

@@ -1,9 +1,9 @@
-import React, { FunctionComponent, useContext, useRef, useState } from "react";
 import axios from "axios";
+import React, { FunctionComponent, useContext, useRef, useState } from "react";
 
+import NowPlayingContext from "../NowPlayingContext";
 import ISong from "../interfaces/song.interface";
 import ListItem from "./ListItem/ListItem";
-import NowPlayingContext from "../NowPlayingContext";
 
 import "./Search.css";
 import "./tabs.css";
@@ -34,8 +34,6 @@ const Search: FunctionComponent = () => {
     axios
       .get(`${uri}/api/v1/search?q=${searchTerm}`)
       .then((res) => {
-        console.log(res.data);
-        
         setResults(res.data as ISong[]);
         goToTop();
         setIsSpinning(false);

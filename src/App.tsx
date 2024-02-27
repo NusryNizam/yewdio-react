@@ -1,13 +1,13 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 
 import NowPlayingContext from "./NowPlayingContext";
 import NavigationBar from "./components/NavigationBar";
-import Snackbar from "./components/Snackbar/Snackbar";
 import Player from "./components/Player";
+import Snackbar from "./components/Snackbar/Snackbar";
 
 import "./App.css";
-import PlaylistDetails from "./components/PlaylistDetails/PlaylistDetails";
 import BottomSheet from "./components/BottomSheet/BottomSheet";
+import PlaylistDetails from "./components/PlaylistDetails/PlaylistDetails";
 
 function App() {
   const [isHorizontal, setIsHorizontal] = useState(true);
@@ -26,9 +26,19 @@ function App() {
 
   const rootRef = useRef<HTMLDivElement | null>(null);
 
+  const handleResize = useCallback((width: number) => {
+    if (width > 1000) {
+      setIsMinimized(false);
+      setIsHorizontal(false);
+    } else {
+      setIsMinimized(true);
+      setIsHorizontal(true);
+    }
+  }, []);
+
   useEffect(() => {
     if (rootRef.current) {
-      let width = rootRef.current.clientWidth;
+      const width = rootRef.current.clientWidth;
 
       if (width > 1000) {
         handleResize(1000 + 1);
@@ -46,19 +56,7 @@ function App() {
         handleResize(1000);
       });
     };
-  }, []);
-
-  function handleResize(width: number) {
-    if (width > 1000) {
-      // console.log(width);
-
-      setIsMinimized(false);
-      setIsHorizontal(false);
-    } else {
-      setIsMinimized(true);
-      setIsHorizontal(true);
-    }
-  }
+  }, [handleResize]);
 
   const closeModal = () => {
     setIsPlaylistShown(false);
@@ -73,7 +71,7 @@ function App() {
       <Player />
 
       {isPlaylistShown && (
-        <BottomSheet title='Title' closeEvent={closeModal}>
+        <BottomSheet title="Title" closeEvent={closeModal}>
           <PlaylistDetails
             name={selectedPlaylist}
             content={itemsOfSelectedPlaylist}

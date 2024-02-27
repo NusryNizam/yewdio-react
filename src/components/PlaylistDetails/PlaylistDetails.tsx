@@ -1,9 +1,9 @@
-import { FunctionComponent, useEffect } from "react";
+import { FunctionComponent } from "react";
 
-import ISong from "../../interfaces/song.interface";
-import "./PlaylistDetails.css";
-import ListItem from "../ListItem/ListItem";
 import { Pressable } from "@ark-ui/react";
+import ISong from "../../interfaces/song.interface";
+import ListItem from "../ListItem/ListItem";
+import "./PlaylistDetails.css";
 
 type PlaylistDetailsProps = {
   name: string;
@@ -11,26 +11,12 @@ type PlaylistDetailsProps = {
   closeEvent: () => void;
 };
 const PlaylistDetails: FunctionComponent<PlaylistDetailsProps> = (props) => {
-  const closeModal = () => {
-    props.closeEvent();
-  };
-  useEffect(() => {
-    console.log(props.content);
-  }, []);
   const { content } = props;
   return (
     <div className="playlist-details-container">
       <div className="playlist-details">
-          <h4 className='playlist-title'>{props.name}</h4>
-        {/* <div className="playlist-header"> */}
-          {/* <Pressable
-            className="icon-button close-btn"
-            aria-label="Close"
-            onPress={closeModal}
-          >
-            ✕
-          </Pressable> */}
-        {/* </div> */}
+        <h4 className="playlist-title">{props.name}</h4>
+
         <div className="button-container">
           <Pressable className="flat-button" aria-label="Play all">
             Play All
@@ -61,7 +47,6 @@ const PlaylistDetails: FunctionComponent<PlaylistDetailsProps> = (props) => {
             );
           })}
       </div>
-      {/* <div className="modal-bg" onClick={closeModal}></div> */}
     </div>
   );
 };

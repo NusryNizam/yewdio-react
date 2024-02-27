@@ -1,5 +1,5 @@
-import { useContext, useEffect, useRef } from "react";
 import { Pressable } from "@ark-ui/react";
+import { useContext, useEffect, useRef } from "react";
 
 import NowPlayingContext from "../NowPlayingContext";
 

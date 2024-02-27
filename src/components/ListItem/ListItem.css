@@ -17,7 +17,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  font-family: 'Satoshi-Bold';
+  font-family: "Satoshi-Bold";
 }
 
 .author {
@@ -30,7 +30,7 @@
 
 .isVerified {
   font-size: 0.5rem;
-  font-family: 'Satoshi-Bold';
+  font-family: "Satoshi-Bold";
   background-color: lightskyblue;
   max-width: fit-content;
   padding: 0px 2px;

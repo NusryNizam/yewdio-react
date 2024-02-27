@@ -4,8 +4,8 @@ import "./tabs.css";
 import { songs } from "../../dummy-data.ts";
 import PlaylistInterface from "../interfaces/playlist.interface.ts";
 
-import "./Playlists.css";
 import NowPlayingContext from "../NowPlayingContext.tsx";
+import "./Playlists.css";
 
 const Playlists: React.FC = () => {
   const {
@@ -38,7 +38,6 @@ const Playlists: React.FC = () => {
   return (
     <section className="container playlists">
       <h2>Playlists</h2>
-      {/* <p>Playlists</p> */}
       <ul>
         {playlists.map((playlist) => {
           return (
@@ -52,9 +51,6 @@ const Playlists: React.FC = () => {
           );
         })}
       </ul>
-      {/* {!isPlaylistShown && 
-        <PlaylistDetails name={selectedPlaylist} content={itemsOfSelectedPlaylist}/>
-      } */}
     </section>
   );
 };

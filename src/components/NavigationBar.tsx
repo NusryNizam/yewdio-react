@@ -7,8 +7,8 @@ import {
 } from "@ark-ui/react";
 
 import Dashboard from "./Dashboard";
-import Search from "./Search";
 import Playlists from "./Playlists";
+import Search from "./Search";
 import Settings from "./Settings";
 
 import "./NavigationBar.css";

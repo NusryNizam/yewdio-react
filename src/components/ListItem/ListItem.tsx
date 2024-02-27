@@ -1,5 +1,5 @@
-import { FunctionComponent, useContext } from "react";
 import axios from "axios";
+import { FunctionComponent, useContext } from "react";
 
 import ISong, { IThumbs } from "../../interfaces/song.interface";
 import NowPlayingContext from "../../NowPlayingContext";
@@ -24,7 +24,8 @@ const ListItem: FunctionComponent<ListItemProps> = (props) => {
     convertDuration,
     showNotification,
     checkIfLiked,
-    setIsPlayingFavourites, uri
+    setIsPlayingFavourites,
+    uri,
   } = useContext(NowPlayingContext);
 
   function playSong() {
@@ -42,14 +43,14 @@ const ListItem: FunctionComponent<ListItemProps> = (props) => {
           title: data.title,
           lengthSeconds: data.lengthSeconds,
           videoThumbnails: data.videoThumbnails,
-          authorVerified: data.authorVerified
+          authorVerified: data.authorVerified,
         });
 
         navigator.mediaSession.metadata = new MediaMetadata({
           artist: data.author,
           title: data.title,
-          artwork: [{src: data.videoThumbnails[3].url}]
-        })
+          artwork: [{ src: data.videoThumbnails[3].url }],
+        });
 
         setAudioSrc(res.data.adaptiveFormats[2].url);
       })
@@ -62,20 +63,20 @@ const ListItem: FunctionComponent<ListItemProps> = (props) => {
   }
 
   return (
-    <li
-      className="list-item"
-      title={title}
-      onClick={() => playSong()}
-    >
+    <li className="list-item" title={title} onClick={() => playSong()}>
       <div className="flex-container">
         <div className="image-container">
-          <img rel="preload" src={thumbnails[5].url} alt={`Video thumbnail of ${title}`} />
+          <img
+            rel="preload"
+            src={thumbnails[5].url}
+            alt={`Video thumbnail of ${title}`}
+          />
           <span className="duration">{convertDuration(duration)}</span>
         </div>
         <div className="details-container">
           <div className="title">{title}</div>
           <div className="author">{author}</div>
-          <div className="isVerified">{isVerified ? 'VERIFIED' : ''}</div>
+          <div className="isVerified">{isVerified ? "VERIFIED" : ""}</div>
         </div>
       </div>
     </li>

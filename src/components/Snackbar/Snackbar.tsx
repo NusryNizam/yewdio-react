@@ -10,16 +10,16 @@ const Snackbar: React.FunctionComponent<SnackbarProps> = (props) => {
   return (
     <div className="snackbar-container">
       <div
-      className={
-        type === "error"
-          ? "snackbar error"
-          : type === "success"
-          ? "snackbar success"
-          : "snackbar info"
-      }
-    >
-      <p>{message}</p>
-    </div>
+        className={
+          type === "error"
+            ? "snackbar error"
+            : type === "success"
+            ? "snackbar success"
+            : "snackbar info"
+        }
+      >
+        <p>{message}</p>
+      </div>
     </div>
   );
 };
