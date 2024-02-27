@@ -9,13 +9,13 @@ import "./Search.css";
 import "./tabs.css";
 
 const Search: FunctionComponent = () => {
-  let [results, setResults] = useState<ISong[]>([]);
-  let [searchTerm, setSearchTerm] = useState("");
-  let [isSpinning, setIsSpinning] = useState(false);
+  const [results, setResults] = useState<ISong[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isSpinning, setIsSpinning] = useState(false);
 
-  let searchRef = useRef<HTMLElement | null>(null);
+  const searchRef = useRef<HTMLElement | null>(null);
 
-  const { showNotification } = useContext(NowPlayingContext);
+  const { showNotification, uri } = useContext(NowPlayingContext);
 
   function searchItem(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") {
@@ -32,9 +32,7 @@ const Search: FunctionComponent = () => {
   const getResults = () => {
     setIsSpinning(true);
     axios
-      // .get(`https://yt.funami.tech/api/v1/search?q=${searchTerm}`)
-      //.get(`https://anontube.lvkaszus.pl/api/v1/search?q=${searchTerm}`)
-      .get(`https://invidious.private.coffee/api/v1/search?q=${searchTerm}`)
+      .get(`${uri}/api/v1/search?q=${searchTerm}`)
       .then((res) => {
         console.log(res.data);
         

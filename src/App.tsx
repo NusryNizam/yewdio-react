@@ -71,16 +71,6 @@ function App() {
         <Snackbar type={notification.type} message={notification.message} />
       )}
       <Player />
-      {/* {isPlaylistShown && (
-        <PlaylistDetails
-          name={selectedPlaylist}
-          content={itemsOfSelectedPlaylist}
-          closeEvent={closeModal}
-        >
-          <h1>hello</h1>
-          <h2>hoal</h2>
-        </PlaylistDetails>
-      )} */}
 
       {isPlaylistShown && (
         <BottomSheet title='Title' closeEvent={closeModal}>

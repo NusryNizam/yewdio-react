@@ -24,16 +24,14 @@ const ListItem: FunctionComponent<ListItemProps> = (props) => {
     convertDuration,
     showNotification,
     checkIfLiked,
-    setIsPlayingFavourites
+    setIsPlayingFavourites, uri
   } = useContext(NowPlayingContext);
 
   function playSong() {
     setIsPlayingFavourites(false);
     checkIfLiked(videoId);
     axios
-      // .get(`https://yt.funami.tech/api/v1/videos/${videoId}`)
-      //.get(`https://anontube.lvkaszus.pl/api/v1/videos/${videoId}`)
-      .get(`https://invidious.private.coffee/api/v1/videos/${videoId}`)
+      .get(`${uri}/api/v1/videos/${videoId}`)
       .then((res) => {
         let data: ISong = res.data;
         setNowPlaying({

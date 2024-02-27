@@ -60,7 +60,7 @@ const NavigationBar = (props: NavigationBarProps) => {
                   </div>
                 </button>
               </TabTrigger>
-              <TabTrigger value="playlists">
+              {/* <TabTrigger value="playlists">
                 <button title="Playlists">
                   <svg className="icon">
                     <use xlinkHref="#playlist-icon"></use>
@@ -79,7 +79,7 @@ const NavigationBar = (props: NavigationBarProps) => {
                     Settings
                   </div>
                 </button>
-              </TabTrigger>
+              </TabTrigger> */}
               <TabIndicator
                 className={
                   isHorizontal

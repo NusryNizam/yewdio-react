@@ -39,4 +39,5 @@ export default interface IState {
   isPlaylistShown: boolean;
   setIsPlaylistShown: React.Dispatch<React.SetStateAction<boolean>>;
   setIsPlayingFavourites: React.Dispatch<React.SetStateAction<boolean>>;
+  uri: string;
 }

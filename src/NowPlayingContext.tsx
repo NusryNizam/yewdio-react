@@ -1,10 +1,11 @@
-import { ReactNode, createContext, useEffect, useRef, useState } from "react";
+import { ReactNode, createContext, useCallback, useEffect, useRef, useState } from "react";
 
 import ISong from "./interfaces/song.interface";
 import INotification from "./interfaces/notification.interface";
 import IState from "./interfaces/state.interface";
 import PlaylistInterface from "./interfaces/playlist.interface";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
+import { Instances, InvidiousData } from "./types/api.types";
 
 const defaultISong: ISong = {
   type: "",
@@ -57,6 +58,7 @@ const defaultState = {
   setIsPlaylistShown: () => { },
   playFavourites: () => { },
   setIsPlayingFavourites: () => {},
+  uri: "",
 };
 
 function convertDuration(audioDuration: number = 0) {
@@ -113,6 +115,9 @@ export function ContextProvider({
   let [isPlayingFavourites, setIsPlayingFavourites] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(new Audio());
 
+  const [instances, setInstances] = useState<Instances[]>(); 
+  const [uri, setUri] = useState(''); 
+
   function retrieveLikes(): ISong[] {
     if (localStorage.getItem("likes") != null) {
       let likes = JSON.parse(localStorage.getItem("likes") as string);
@@ -125,6 +130,42 @@ export function ContextProvider({
   useEffect(() => {
     retrieveLikes();
   }, []);
+
+  useEffect(() => {
+    getInstances();
+  }, [])
+
+  const getInstances = useCallback(async () => {
+
+    try {
+      const response: AxiosResponse<InvidiousData[]> =
+        await axios.get<InvidiousData[]>(
+          `https://api.invidious.io/instances.json?sort_by=api`,
+        );
+
+      let transformedData: Instances[] = response.data.map(
+        ([_, value]) => ({
+          cors: value.cors,
+          api: value.api,
+          type: value.type,
+          uri: value.uri,
+        }),
+      );
+
+      transformedData = transformedData.filter(
+        (data) =>
+          data.cors && data.api && data.type === "https",
+      );
+
+      console.log(transformedData);
+      
+      setInstances(transformedData);
+      setUri(transformedData[0].uri)
+
+    } catch (error) {
+      throw new Error("Error");
+    }
+  }, [])
 
   function handleAudioError() {
     setIsPlaying(false);
@@ -321,7 +362,7 @@ export function ContextProvider({
   function playSong(videoId: string) {
     checkIfLiked(videoId);
     axios
-      .get(`https://invidious.private.coffee/api/v1/videos/${videoId}`)
+      .get(`${uri}/api/v1/videos/${videoId}`)
       .then((res) => {
         let data: ISong = res.data;
         setNowPlaying({
@@ -343,12 +384,6 @@ export function ContextProvider({
 
         setAudioSrc(res.data.adaptiveFormats[2].url);
       })
-    // .catch((err) => {
-    //   showNotification({
-    //     type: "error",
-    //     message: `${err.message}: Please try again later`,
-    //   });
-    // });
   }
 
   return (
@@ -386,7 +421,8 @@ export function ContextProvider({
         setItemsOfSelectedPlaylist,
         isPlaylistShown,
         setIsPlaylistShown,
-        setIsPlayingFavourites
+        setIsPlayingFavourites,
+        uri
       }}
     >
       {children}

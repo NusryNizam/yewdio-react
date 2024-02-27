@@ -339,7 +339,6 @@ const Player: React.FC = () => {
         >
           <path
             fillRule="evenodd"
-            // stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth="2"
